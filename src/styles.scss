@@ -10,3 +10,158 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dadce0;
+    border-radius: 7px;
+    padding: 50px 25px;
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.container_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-head {
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+    40% {
+        -webkit-transform: translateY(-30px);
+        -ms-transform: translateY(-30px);
+        transform: translateY(-30px)
+    }
+    60% {
+        -webkit-transform: translateY(-15px);
+        -ms-transform: translateY(-15px);
+        transform: translateY(-15px)
+    }
+}
+
+.head_bounce {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.head_bounce:hover {
+    cursor: pointer;
+    animation-name: bounce;
+    -moz-animation-name: bounce;
+}
+
+.container_title {
+    padding-top: 16px;
+    font-size: 24px;
+    font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+    font-weight: 400;
+    word-break: break-word;
+    margin-top: -1px;
+}
+
+.container_subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: -5px;
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.container_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_infotext {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4286;
+}
+
+.container_infotext>a {
+    color: #1a73e8;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.container_buttons_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0 0;
+}
+
+.container_button {
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+}
+
+.container_button:first-of-type {
+    padding-left: 0;
+}
+
+.prime_button {
+    background-color: #1a73e8 !important;
+    padding: 0 10px 0 10px !important;
+}
+
+ ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #1a73e8 !important;
+}
+
+ ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #1a73e8 !important;
+}
+
+ ::ng-deep .mat-form-field-suffix {
+    align-self: center !important;
+}
+
+ ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #1a73e8;
+}
+
+::ng-deep .mat-hint {
+    color: #5f6368;
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
