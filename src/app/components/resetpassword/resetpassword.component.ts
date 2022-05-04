@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../index';
 
 @Component({
   selector: 'app-resetpassword',
@@ -6,10 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resetpassword.component.scss']
 })
 export class ResetpasswordComponent implements OnInit {
+  resetPassForm!: FormGroup;
+  submitted = false;
+  showPass = true;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.resetPassForm = this.formBuilder.group({
+        newPassword: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).{8,}$')]],
+        confirmPassword: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).{8,}$')]],
+    }, {
+            validator: MustMatch('newPassword', 'confirmPassword')
+        });
+  }
+
+   // convenience getter for easy access to form fields
+  get f() { return this.resetPassForm.controls; }
+
+  showPassword(){
+    this.showPass = !this.showPass;
+  }
+
+  onSubmit() {
+    this.submitted = true;
   }
 
 }

@@ -3,30 +3,34 @@
         <div class="container_wrapper">
             <!-- <img class="signin_logo" src="../../../assets/images/logo.svg" alt="" /> -->
             <div class="form-head" style="font-weight:500">
-                <p class="head_bounce" style="font-size: 30px ; color: #4285F4">F</p>
-                <p class="head_bounce" style="font-size: 30px ; color: #EA4335">u</p>
-                <p class="head_bounce" style="font-size: 30px ; color: #FBBC05">n</p>
+                <p class="head_bounce" style="font-size: 35px ; color: #4285F4">F</p>
+                <p class="head_bounce" style="font-size: 30px ; color: #DB4437">u</p>
+                <p class="head_bounce" style="font-size: 35px ; color: #F4B400">n</p>
                 <p class="head_bounce" style="font-size: 30px ; color: #4285F4">d</p>
-                <p class="head_bounce" style="font-size: 30px ; color: #34A853">o</p>
-                <p class="head_bounce" style="font-size: 30px ; color: #EA4335">o</p>
+                <p class="head_bounce" style="font-size: 35px ; color: #0F9D58">o</p>
+                <p class="head_bounce" style="font-size: 30px ; color: #DB4437">o</p>
             </div>
             <h1 class="container_title">Sign in</h1>
             <p class="container_subtitle">Use your Fundoo Account</p>
-            <form class="container_form">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container_form">
                 <mat-form-field appearance="outline" class="email_input ">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="">
+                    <input matInput placeholder="" formControlName="emailId">
+                    <mat-error *ngIf="submitted && loginForm.get('emailId')?.hasError('required')">Email Id is required</mat-error>
+                    <mat-error *ngIf="submitted && loginForm.get('emailId')?.errors?.['pattern']">Email Id is not valid</mat-error>
                     <!-- <mat-hint>You can use letters, numbers & periods</mat-hint> -->
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="password_input">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="" type="password">
+                    <input matInput placeholder="" [type]="showPass ? 'password': 'text'" formControlName="password">
+                    <mat-error *ngIf="submitted && loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="submitted && loginForm.get('password')?.errors?.['pattern']">Password is not valid</mat-error>
                     <!-- <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint> -->
                 </mat-form-field>
                 <div class="forgot_text">
-                    <a href="#" class="">Forgot Password..??</a>
+                    <button mat-button class="btn-basic container_button text_bold" routerLink='/forgotpassword'>Forgot Password..??</button>
                     <section class="checkbox_input">
-                        <mat-checkbox class="checkbox_input">Show Password</mat-checkbox>
+                        <mat-checkbox class="checkbox_input" (click)="showPassword()">Show Password</mat-checkbox>
                     </section>
                 </div>
                 <div class="container_infotext">
@@ -36,7 +40,7 @@
                     </a>
                 </div>
                 <div class="container_buttons_container">
-                    <button mat-button class="btn-basic container_button text_bold">Create Account</button>
+                    <button mat-button class="btn-basic container_button text_bold" routerLink='/register'>Create Account</button>
                     <button mat-raised-button class="btn-primary container_button prime_button" color="primary">Next</button>
                 </div>
             </form>
