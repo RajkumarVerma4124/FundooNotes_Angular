@@ -12,4 +12,8 @@ export class HttpService {
   postService(url: string, reqData: any, token: boolean = false, httpOptions: any) {
     return this.httpClient.post(this.baseurl + url, reqData, token && httpOptions);
   }
+
+  patchService(url : string, reqData: any,  token: boolean = false, httpOptions: any){ 
+    return this.httpClient.patch(this.baseurl + url, reqData, token && httpOptions);
+  }
 }

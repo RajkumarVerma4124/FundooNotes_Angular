@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../helpers/index';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/userServices/user.service';
 
 @Component({
   selector: 'app-resetpassword',
@@ -11,8 +13,9 @@ export class ResetpasswordComponent implements OnInit {
   resetPassForm!: FormGroup;
   submitted = false;
   showPass = true;
+  token : any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private userService : UserService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.resetPassForm = this.formBuilder.group({
@@ -21,6 +24,7 @@ export class ResetpasswordComponent implements OnInit {
     }, {
             validator: MustMatch('newPassword', 'confirmPassword')
         });
+    this.token = this.activeRoute.snapshot.paramMap.get('token');
   }
 
    // convenience getter for easy access to form fields
@@ -32,6 +36,17 @@ export class ResetpasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    if (this.resetPassForm.valid) {
+        let reqData = {
+          newPassword: this.resetPassForm.value.newPassword,
+          confirmPassword: this.resetPassForm.value.confirmPassword
+        }
+        this.userService.resetPassword(reqData,this.token).subscribe((response:any)=>{
+            console.log("Password changed successfully", response);
+        }, error => {
+          console.log(error)
+      });
+      }
   }
 
 }

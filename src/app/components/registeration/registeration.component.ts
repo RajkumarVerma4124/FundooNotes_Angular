@@ -21,7 +21,7 @@ export class RegisterationComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
         firstName: ['', [ Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{2,}$')]],
         lastName: ['', [ Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{2,}$')]],
-        emailId: ['', [ Validators.required, Validators.pattern('^[a-zA-Z0-9]{3,}([._+-][0-9a-zA-Z]{2,})*@[0-9a-zA-Z]+[.]?([a-zA-Z]{2,4})+[.]?([a-zA-Z]{2,3})*$')]],
+        emailId: ['', [ Validators.required, Validators.pattern('^[a-zA-Z0-9]{3,}([._+-][0-9a-zA-Z]{2,})*@[0-9a-zA-Z]+[.]?([a-zA-Z]{2})+[.]([a-zA-Z]{3})+$')]],
         password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).{8,}$')]],
         confirmPassword: ['', [Validators.required,Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).{8,}$')]],
     }, {
@@ -46,8 +46,10 @@ export class RegisterationComponent implements OnInit {
           password: this.registerForm.value.password
         }
         this.userService.registration(reqData).subscribe((response:any)=>{
-            console.log("Register successful", response);
-        });
+            console.log("Registered the user successfully", response);
+        }, error => {
+          console.log(error)
+      });
     }
   }
   
