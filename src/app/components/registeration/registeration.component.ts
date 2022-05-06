@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../helpers/index';
 import { UserService } from 'src/app/services/userServices/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-registeration',
@@ -15,7 +18,7 @@ export class RegisterationComponent implements OnInit {
   submitted = false;
   showPass = true;
 
-  constructor(private formBuilder: FormBuilder,private userService : UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -47,10 +50,30 @@ export class RegisterationComponent implements OnInit {
         }
         this.userService.registration(reqData).subscribe((response:any)=>{
             console.log("Registered the user successfully", response);
+            this.router.navigateByUrl('/login')
+            this.toastr.success("User registered successfully", "Register Form Success", {
+            toastClass: 'ngx-toastr success',
+          });
         }, error => {
-          console.log(error)
+          console.log(error);
+          this.toastr.error(error.error.message, "Error ....!!!", {
+            toastClass: 'ngx-toastr error',
+          });
       });
-    }
+    } else {
+      this.toastr.warning("Fill the register form with valid values", "Register Form Alert", {
+        toastClass: 'ngx-toastr',
+      });
+      // this.loginForm.reset();
+    } 
+  }
+
+  toggleLogin() {
+    setTimeout(() => {
+      this.toastr.info("Redirected To Login Page", "Login Form", {
+      })
+      this.router.navigateByUrl('/login')
+    }, 1500);
   }
   
 }

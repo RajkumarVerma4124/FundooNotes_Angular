@@ -14,6 +14,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,20 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 15000,
+      closeButton: true,
+      enableHtml: false,
+      tapToDismiss: false,
+      titleClass: 'alert-title',
+      messageClass: 'alert-message',
+      positionClass: 'toast-bottom-center',
+      disableTimeOut: false,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+      extendedTimeOut: 500,
+    }), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

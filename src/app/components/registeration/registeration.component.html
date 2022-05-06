@@ -38,7 +38,7 @@
                             <mat-error *ngIf="submitted && registerForm.get('emailId')?.errors?.['pattern']">Email Id is not valid</mat-error>
                         </mat-form-field>
                         <div class="signup_button">
-                            <button mat-button class="btn-basic signup_button text_bold button_text" color="primary">Use my current email address instead</button>
+                            <a mat-button class="btn-basic signup_button text_bold button_text" color="primary">Use my current email address instead</a>
                         </div>
                         <div class="signup_inputpassword">
                             <div class="signup_passwordWrapper">
@@ -63,7 +63,7 @@
                             </section>
                         </div>
                         <div class="signup_buttons_container">
-                            <button mat-button class="btn-basic signup_button text_bold" color="primary" routerLink='/login'>Sign in instead</button>
+                            <a mat-button class="btn-basic signup_button text_bold" color="primary" (click)="toggleLogin()">Sign in instead</a>
                             <button mat-raised-button class="btn-primary signup_button buttons " color="primary">Next</button>
                         </div>
                     </form>

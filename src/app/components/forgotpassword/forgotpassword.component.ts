@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/userServices/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -11,7 +13,7 @@ export class ForgotpasswordComponent implements OnInit {
   forgotPassForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private userService : UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.forgotPassForm = this.formBuilder.group({
@@ -30,10 +32,29 @@ export class ForgotpasswordComponent implements OnInit {
           }
           this.userService.forgotPassword(reqData).subscribe((response:any)=>{
               console.log("Reset link sent successfully", response);
+              this.toastr.success("Reset link sent successfully", "Check Your Mail", {
+              toastClass: 'ngx-toastr success',
+            });
           }, error => {
-              console.log(error)
+              console.log(error);
+              this.toastr.error(error.error.message, "Error....!!!", {
+              toastClass: 'ngx-toastr error',
+            });
           });
       }
+      else {
+          this.toastr.warning("Fill the login form with valid values", "Login Form Alert", {
+          toastClass: 'ngx-toastr',
+        });
+      }
+  }
+
+  toggleRegister() {
+    setTimeout(() => {
+      this.toastr.info("Redirected To Register Page", "Register Form", {
+      })
+      this.router.navigateByUrl('/register')
+    }, 1500);
   }
 }
 

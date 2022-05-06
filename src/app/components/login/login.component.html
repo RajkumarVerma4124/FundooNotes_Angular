@@ -28,7 +28,7 @@
                     <!-- <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint> -->
                 </mat-form-field>
                 <div class="forgot_text">
-                    <button mat-button class="btn-basic container_button text_bold" routerLink='/forgotpassword'>Forgot Password..??</button>
+                    <a mat-button class="btn-basic container_button text_bold" (click)="toggleForgotPass()">Forgot Password..??</a>
                     <section class="checkbox_input">
                         <mat-checkbox class="checkbox_input" (click)="showPassword()">Show Password</mat-checkbox>
                     </section>
@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <div class="container_buttons_container">
-                    <button mat-button class="btn-basic container_button text_bold" routerLink='/register'>Create Account</button>
+                    <a mat-button class="btn-basic container_button text_bold" (click)="toggleRegister()">Create Account</a>
                     <button mat-raised-button class="btn-primary container_button prime_button" color="primary">Next</button>
                 </div>
             </form>
