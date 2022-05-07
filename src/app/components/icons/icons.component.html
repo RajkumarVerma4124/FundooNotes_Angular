@@ -1,0 +1,19 @@
+<div class="notes_icons">
+    <button mat-icon-button matTooltip="Remind me"> 
+        <img src="/assets/images/add_alert_black.svg" width="20px" height="20px">
+    </button>
+    <button mat-icon-button matTooltip="Collaborator"> 
+        <img src="/assets/images/add_person.svg" width="20px" height="20px">
+    </button>
+    <button mat-icon-button matTooltip="Background color"> 
+        <img src="/assets/images/palette_black.svg" width="20px" height="20px"></button>
+    <button mat-icon-button matTooltip="Add image"> 
+        <img src="/assets/images/image_black.svg" width="20px" height="20px">
+    </button>
+    <button mat-icon-button [matTooltip]="! isArchive == true ? 'archive' : 'unarchive'" (click)="changeArchiveStatus()"> 
+        <img src="/assets/images/archive_black.svg" width="20px" height="20px">
+    </button>
+    <button mat-icon-button matTooltip="More">
+        <img src="/assets/images/more_vert.svg" width="20px" height="20px">
+    </button>
+</div>

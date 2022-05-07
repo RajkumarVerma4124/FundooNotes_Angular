@@ -15,6 +15,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { IconsComponent } from './components/icons/icons.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { AvatarModule } from "ngx-avatar";
+import { TakenoteComponent } from './takenote/takenote.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -22,7 +32,10 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterationComponent,
     LoginComponent,
     ForgotpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    IconsComponent,
+    DashboardComponent,
+    TakenoteComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +62,13 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
       extendedTimeOut: 500,
     }), // ToastrModule added
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule, 
+    AvatarModule,
+    MatTooltipModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

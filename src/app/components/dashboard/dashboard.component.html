@@ -1,0 +1,58 @@
+<div class="example-container header" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="example-toolbar">
+        <div fxLayout="row" class="header__left">
+            <button mat-icon-button (click)="[snav.toggle(), menuClicked()]" class="menu_button" matTooltip="Main Menu">
+                <mat-icon class="menu-icon">menu</mat-icon>
+            </button>
+            <img class="keep_image" src="../../../assets/images/keep.png" />
+            <h1 class="header_text">Fundoo</h1>
+        </div>
+
+        <div class="header_middle">
+            <div class="div_wrapper" [ngClass]="!searchBarActive == true ? 'header__middleLeft' : 'header__middleLeft active'" (click)="setSearchActive()">
+                <button mat-icon-button matTooltip="Search">
+                    <img src="../../../assets/images/search_black_24dp.svg" />
+                </button>
+                <input type="text" autocomplete="off" matInput placeholder="Search" (keyup)="recieveSearchMsg($event)" [(ngModel)]="searchTerm" />
+                <button mat-icon-button [ngClass]="searchActive == true ? 'iconcross iconactive' : 'iconcross'" (click)="clickCross()">
+                    <img src="../../../assets/images/cross.svg" />
+                </button>
+            </div>
+        </div>
+
+        <div class="image_wrapper header__middelRight">
+            <button mat-icon-button (click)="onReload()" matTooltip="Refresh">
+                <mat-icon>replay</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Grid view">
+                <img src="../../../assets/images/dns_black_24dp.svg" />
+            </button>
+            <button mat-icon-button matTooltip="Setting">
+                <img src="../../../assets/images/settings_black_24dp.svg" />
+            </button>
+        </div>
+        <div class="image_wrapper header__right" fxLayout="row">
+            <button mat-icon-button matTooltip="Google Apps">
+                <img src="../../../assets//images/apps_black_24dp.svg" />
+            </button>
+            <ngx-avatar [style]="customStyle" size="40" name="Raj Verma" (click)="logout()"></ngx-avatar>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [ngClass]="isMenuOpen == true ? 'mat_sideber' : 'mat_sideber_icons'">
+            <mat-nav-list class="nav-list">
+                <a class="sidebar_active" mat-list-item><span class="sidebar_image"><img src="../../../assets/images/lightbulb_black_24dp.svg" /></span>
+                    <span class="sidebar_text">Notes</span></a>
+                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/notifications_black_24dp.svg" /></span>
+                    <span class="sidebar_text">Reminder</span></a>
+                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/edit_black_24dp.svg" /></span>
+                    <span class="sidebar_text">Label</span></a>
+                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/archive_black.svg" /></span>
+                    <span class="sidebar_text">Archive</span></a>
+                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/delete_black_24dp.svg" /></span>
+                    <span class="sidebar_text">Trash</span></a>
+            </mat-nav-list>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>
