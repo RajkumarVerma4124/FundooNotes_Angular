@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div>
+        <app-takenote (addNoteEvent)="recieveAddedNote($event)"></app-takenote>
+    </div>
+    <div class="displayNotes" fxLayout="row" fxLayoutAlign="start start">
+        <div class="notes">
+            <app-displaynote [userNoteList]="userNoteList"></app-displaynote>
+        </div>
+    </div>
+</div>

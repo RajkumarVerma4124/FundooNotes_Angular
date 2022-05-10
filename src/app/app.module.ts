@@ -22,9 +22,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AvatarModule } from "ngx-avatar";
-import { TakenoteComponent } from './takenote/takenote.component';
+import { TakenoteComponent } from './components/takenote/takenote.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { DisplaynoteComponent } from './components/displaynote/displaynote.component';
+import { GetallnotesComponent } from './components/getallnotes/getallnotes.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthguardService } from './services/authguardServices/authguard.service';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +41,9 @@ import { MatCardModule } from '@angular/material/card';
     ResetpasswordComponent,
     IconsComponent,
     DashboardComponent,
-    TakenoteComponent
+    TakenoteComponent,
+    DisplaynoteComponent,
+    GetallnotesComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,9 +76,13 @@ import { MatCardModule } from '@angular/material/card';
     MatListModule, 
     AvatarModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    AuthguardService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

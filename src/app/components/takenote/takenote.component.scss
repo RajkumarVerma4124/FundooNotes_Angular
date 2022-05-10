@@ -1,0 +1,239 @@
+.takeNoteContainer {
+    width: 100%;
+    margin-bottom: 0px;
+    margin: 30px 0 60px 0;
+    padding: 10px;
+}
+
+.takenoteone {
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 550px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 10px;
+    padding: 5px 16px 6px 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.noteone_left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.noteone_right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 125px;
+}
+
+.content {
+    border: none;
+    outline: none;
+    height: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: .00625em;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: #202124;
+    width: 100%;
+    opacity: 0.8;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.mat-icon-button {
+    opacity: 0.5;
+}
+
+.mat-icon-button:hover {
+    opacity: 1;
+}
+
+.takenotetwo {
+    display: flex;
+    border: 1px solid transparent;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-between;
+    width: 550px;
+    height: 140px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 10px;
+    padding: 5px 16px 5px 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.notetwo_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.notetwo_middle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 30%;
+}
+
+.notetwo_bottom {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    flex: 0.9;
+}
+
+.description {
+    flex: 0.9;
+}
+
+.note_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: medium;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.note_description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-around;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+::ng-deep textarea {
+    resize: none !important;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    /* user can resize vertically, but width is fixed */
+}
+
+.closebutton {
+    border: none;
+    outline: none;
+    background-color: transparent !important;
+    color: rgba(0, 0, 0, .87) !important;
+    text-transform: capitalize !important;
+    padding: 5px 20px !important;
+}
+
+.closebutton:hover {
+    background-color: rgba(0, 0, 0, .04) !important;
+}
+
+.undo_icon {
+    opacity: 1;
+}
+
+::ng-deep .alert-title {
+    font-family: Roboto !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 0.1rem !important;
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+    // text-align: center !important;
+}
+
+::ng-deep .alert-message {
+    font-family: Roboto !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.1rem !important;
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+    // text-align: center !important;
+}
+
+::ng-deep .ngx-toastr {
+    width: 70% !important; // Specify toastr-dialog width for all devices
+    // background-color: #f44336;
+    border-radius: 10px !important;
+}
+
+::ng-deep .success {
+    background-color: #0F9D58;
+}
+
+::ng-deep .error {
+    background-color: #f44336;
+}
+
+@media (max-width: 795px) {
+    .takenoteone {
+        width: 460px
+    }
+    .takenotetwo {
+        width: 460px
+    }
+    .undo_icon {
+        margin-left: -8px !important;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 650px) {
+    .takenoteone {
+        width: 380px;
+    }
+    .takenotetwo {
+        width: 380px
+    }
+    .undo_icon {
+        padding-left: 13px !important;
+        opacity: 1;
+    }
+    .note_title {
+        margin-top: 90px;
+    }
+    .pin-button {
+        margin-top: 65px;
+    }
+    .note_description {
+        margin-top: 10px;
+    }
+    .notetwo_bottom {
+        padding-bottom: 75px;
+        margin-left: -18px;
+    }
+}
+
+@media (max-width: 530px) {
+    .takenoteone {
+        width: 360px;
+        margin-left: 50px !important;
+    }
+    .takenotetwo {
+        width: 360px;
+        margin-left: 50px !important;
+    }
+    .notetwo_bottom {
+        margin-left: -30px;
+    }
+}

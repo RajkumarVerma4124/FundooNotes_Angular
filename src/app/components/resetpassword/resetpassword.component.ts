@@ -48,6 +48,7 @@ export class ResetpasswordComponent implements OnInit {
           this.toastr.success("Resetted the password successfully", "Password Reset", {
           toastClass: 'ngx-toastr success',
         });
+        this.router.navigateByUrl('/login')
       }, error => {
         console.log(error);
         this.toastr.error(error.error.message, "Error....!!!", {

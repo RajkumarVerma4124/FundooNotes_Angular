@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/userServices/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  @Output() addUserInfo = new EventEmitter<any>();
+
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
@@ -41,9 +43,13 @@ export class LoginComponent implements OnInit {
       this.userService.login(reqData).subscribe((response: any) => {
         console.log("User login successfull", response);
         localStorage.setItem("token", response.token);
-        this.toastr.success("User login successfull", "Login Form Success", {
+        localStorage.setItem("FirstName", response.firstName);
+        localStorage.setItem("LastName", response.lastName);
+        this.toastr.success("login successfully", "Login Success", {
           toastClass: 'ngx-toastr success',
         });
+        this.addUserInfo.emit(response.data)
+        this.router.navigateByUrl('/dashboard')
       }, error => {
         console.log(error);
         this.toastr.error(error.error.message, "Error....!!!", {
@@ -51,7 +57,7 @@ export class LoginComponent implements OnInit {
         });
       });
     } else {
-      this.toastr.warning("Fill the login form with valid values", "Login Form Alert", {
+      this.toastr.warning("Fill the login form with valid values", "Login Alert", {
         toastClass: 'ngx-toastr',
       });
       // this.loginForm.reset();
