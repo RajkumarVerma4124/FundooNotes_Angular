@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NoteService } from 'src/app/services/noteServices/note.service';
-import { NoteModel } from 'src/app/models/notesModel';
-
 
 @Component({
   selector: 'app-displaynote',

@@ -23,11 +23,14 @@
             </div>
         </div>
 
+        <div class="searchIcon">
+            <button mat-icon-button matTooltip="Search" id="searchIcon" (click)="searchIconClicked()">
+                    <img src="../../../assets/images/search_black_24dp.svg" />
+            </button>
+        </div>
+
         <div class="image_wrapper header__middelRight">
 
-            <button mat-icon-button matTooltip="Search" id="searchIcon" class="searchIcon" (click)="searchIconClicked()">
-                    <img src="../../../assets/images/search_black_24dp.svg" />
-                </button>
             <button mat-icon-button (click)="onReload()" matTooltip="Refresh">
                 <mat-icon>replay</mat-icon>
             </button>
@@ -64,7 +67,7 @@
                     <span class="sidebar_text">Trash</span></a>
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content>
+        <mat-sidenav-content [ngClass]="isMenuOpen == true ? 'mat-sidenav-open' : 'mat-sidenav-close'">
             <div class="notes_container">
                 <router-outlet></router-outlet>
             </div>

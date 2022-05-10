@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 import { NoteModel } from 'src/app/models/notesModel';
 import { ToastrService } from 'ngx-toastr';
@@ -35,6 +35,7 @@ export class TakenoteComponent implements OnInit {
   }
 
   @Input() noteInput: NoteModel = this.noteType();
+  @Output() addNoteEvent = new EventEmitter<any>();
 
 
 
@@ -75,6 +76,7 @@ export class TakenoteComponent implements OnInit {
         this.toastr.success("Notes created successfully"), {
           toastClass: 'ngx-toastr success',
         };
+        this.addNoteEvent.emit(response.data.notesDetails);
         this.noteInput.Title = "";
         this.noteInput.Description = "";
         this.tempTitleStr= "";
@@ -95,25 +97,11 @@ export class TakenoteComponent implements OnInit {
   onTitleClick() {
     this.onTitle = true;
     this.onDesc = false;
-    // if (this.tempTitleStr.length === 0) {
-    //   this.isRedoDisabled = true;
-    // }
-    // else{
-    //   this.isRedoDisabled = false;
-    // }
-    // console.log(this.isRedoDisabled)
   }
 
   onDescriptionClick() {
     this.onDesc = true;
     this.onTitle = false;
-    // if (this.tempDescStr.length === 0) {
-    //   this.isRedoDisabled = true;
-    // }
-    // else {
-    //   this.isRedoDisabled = false;
-    // }
-    // console.log(this.isRedoDisabled)
   }
 
   handleUndoDisable() {

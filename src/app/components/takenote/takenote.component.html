@@ -20,7 +20,7 @@
         </mat-card>
     </div>
     <div *ngIf="isExpand">
-        <mat-card fxLayout="column" fxFlex="125" class="takenotetwo">
+        <mat-card fxLayout="column" class="takenotetwo">
             <div class="notetwo_top">
                 <div class='title'>
                     <textarea class="note_title" placeholder="Title" (keyup)="checkTitle($event)" [(ngModel)]="noteInput.Title" (click)="onTitleClick()"></textarea>
@@ -44,14 +44,15 @@
             </div>
 
             <div class="notetwo_bottom" fxLayout="row">
+                <app-icons></app-icons>
                 <div class="undo_icon" fxLayout="row">
-                    <app-icons></app-icons>
+
                     <button mat-icon-button matTooltip="Undo" (click)="handleUndoDisable()" [disabled]="isUndoDisabled">
-                    <mat-icon>undo</mat-icon>
-                </button>
+                        <mat-icon>undo</mat-icon>
+                    </button>
                     <button mat-icon-button matTooltip="Redo" (click)="handleRedoDisable()" [disabled]="isRedoDisabled">
-                    <mat-icon>redo</mat-icon>
-                </button>
+                        <mat-icon>redo</mat-icon>
+                    </button>
                 </div>
                 <button class="closebutton" mat-flat-button (click)="isExpand=!isExpand" (click)="addNote()">Close</button>
             </div>

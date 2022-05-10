@@ -77,3 +77,17 @@ button:hover {
 .note:hover .note_icons {
     opacity: 1;
 }
+
+@media (max-width: 691px) {
+    .note {
+        margin: 10px;
+        width: 83%;
+    }
+}
+
+@media (max-width: 600px) {
+    .note {
+        margin: 10px;
+        width: 83%;
+    }
+}

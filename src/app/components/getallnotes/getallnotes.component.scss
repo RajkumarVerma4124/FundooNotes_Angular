@@ -1,5 +1,29 @@
+.notesContainer_Main {
+    align-items: center;
+}
+
 .displayNotes {
     flex-wrap: wrap;
     margin-left: 150px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .displayNotes {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 800px) {
+    .displayNotes {
+        margin-left: 100px;
+    }
+    //  ::ng-deep .mat-sidenav-content.mat-drawer-content.mat-sidenav-content {
+    //     margin-left: 178px !important;
+    //     background: white !important;
+    // }
+    //  ::ng-deep .mat-drawer-container {
+    //     background-color: white;
+    //     color: rgba(0, 0, 0, .87);
+    // }
 }

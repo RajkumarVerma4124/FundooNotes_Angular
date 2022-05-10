@@ -1,5 +1,5 @@
 .takeNoteContainer {
-    width: 100%;
+    width: 80%;
     margin-bottom: 0px;
     margin: 30px 0 60px 0;
     padding: 10px;
@@ -11,11 +11,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 550px;
+    width: 52%;
     border: 1px solid rgb(230, 230, 230);
     border-radius: 10px;
     padding: 5px 16px 6px 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-left: 30%;
 }
 
 .noteone_left {
@@ -66,12 +67,12 @@ button:hover {
     flex-direction: column;
     justify-content: space-around;
     align-items: space-between;
-    width: 550px;
-    height: 140px;
+    width: 55.1%;
     border: 1px solid rgb(230, 230, 230);
     border-radius: 10px;
-    padding: 5px 16px 5px 16px;
+    padding: 5px 16px 6px 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-left: 30%;
 }
 
 .notetwo_top {
@@ -92,6 +93,7 @@ button:hover {
 }
 
 .notetwo_bottom {
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -168,12 +170,10 @@ button:hover {
     letter-spacing: 0.1rem !important;
     margin-left: 35px !important;
     margin-right: 35px !important;
-    // text-align: center !important;
 }
 
 ::ng-deep .ngx-toastr {
     width: 70% !important; // Specify toastr-dialog width for all devices
-    // background-color: #f44336;
     border-radius: 10px !important;
 }
 
@@ -185,55 +185,63 @@ button:hover {
     background-color: #f44336;
 }
 
-@media (max-width: 795px) {
+@media (max-width: 1100px) {
     .takenoteone {
-        width: 460px
+        width: 70%;
+        margin-left: 20%;
     }
     .takenotetwo {
-        width: 460px
+        width: 74.1%;
+        margin-left: 20%;
     }
     .undo_icon {
-        margin-left: -8px !important;
-        opacity: 1;
+        margin-left: -10px;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 849px) {
     .takenoteone {
-        width: 380px;
+        width: 90%;
+        margin-left: 8%;
     }
     .takenotetwo {
-        width: 380px
+        width: 94.1%;
+        margin-left: 8%;
     }
     .undo_icon {
-        padding-left: 13px !important;
+        margin-left: -10px;
+    }
+}
+
+@media (max-width: 691px) {
+    .takenoteone {
+        width: 105%;
+        margin-left: -20px;
+    }
+    .takenotetwo {
+        width: 113.1%;
+        margin-left: -20px;
+    }
+    .undo_icon {
+        padding-left: 15px !important;
         opacity: 1;
-    }
-    .note_title {
-        margin-top: 90px;
-    }
-    .pin-button {
-        margin-top: 65px;
     }
     .note_description {
         margin-top: 10px;
     }
     .notetwo_bottom {
-        padding-bottom: 75px;
-        margin-left: -18px;
+        margin-left: -15px;
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 600px) {
     .takenoteone {
-        width: 360px;
-        margin-left: 50px !important;
+        width: 110%;
     }
     .takenotetwo {
-        width: 360px;
-        margin-left: 50px !important;
+        width: 118.1%;
     }
     .notetwo_bottom {
-        margin-left: -30px;
+        margin-left: -10px;
     }
 }
