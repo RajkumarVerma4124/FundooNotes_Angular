@@ -36,7 +36,6 @@ export class GetallnotesComponent implements OnInit {
     this.userNoteList.reverse();
   }
 
-
   recievedUpdatedData(note: any) {
     console.log(note.data);
     this.getUsersNotes();

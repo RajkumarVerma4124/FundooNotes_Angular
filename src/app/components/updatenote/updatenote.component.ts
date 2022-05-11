@@ -55,7 +55,7 @@ export class UpdatenoteComponent implements OnInit {
     if (this.tempDescStr !== this.noteInput.Description || this.tempTitleStr !== this.noteInput.Title) {
       this.noteService.updateNote(this.note, this.noteId).subscribe((response: any) => {
         console.log("Note updated successfully", response.data);
-        this.dialogRef.close(response);
+        this.dialogRef.close(response.data);
       }, error => {
         console.log(error);
       });

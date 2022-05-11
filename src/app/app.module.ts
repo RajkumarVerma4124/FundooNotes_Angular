@@ -33,7 +33,8 @@ import { AuthguardService } from './services/authguardServices/authguard.service
 import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -86,6 +87,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatGridListModule,
     FlexLayoutModule,
     MatDialogModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthguardService

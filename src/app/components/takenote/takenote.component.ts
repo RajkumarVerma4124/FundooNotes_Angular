@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 import { NoteModel } from 'src/app/models/notesModel';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-takenote',
@@ -18,8 +18,10 @@ export class TakenoteComponent implements OnInit {
   tempTitleStr: string = '';
   tempDescStr: string = '';
   noteModel!: NoteModel;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private noteService: NoteService, private toastr: ToastrService,) { }
+  constructor(private noteService: NoteService, private snackBar: MatSnackBar,) { }
 
   noteType(): NoteModel {
     return this.noteModel = {
@@ -71,9 +73,11 @@ export class TakenoteComponent implements OnInit {
     if (this.noteInput.Title != '' || this.noteInput.Description != '') {
       this.noteService.createNote(this.noteInput).subscribe((response: any) => {
         console.log("Notes Created successfull", response);
-        this.toastr.success("Notes created successfully"), {
-          toastClass: 'ngx-toastr success',
-        };
+        this.snackBar.open('Note Created', '', {
+          duration: 4000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })
         this.addNoteEvent.emit(response.data.notesDetails);
         this.noteInput.Title = "";
         this.noteInput.Description = "";
@@ -81,15 +85,17 @@ export class TakenoteComponent implements OnInit {
         this.tempDescStr="";
       }, error => {
         console.log(error);
-        this.toastr.error(error.error.message, "Error....!!!", {
-          toastClass: 'ngx-toastr error',
-        });
+        this.snackBar.open(error.error.message, '', {
+          duration: 4000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })
       });
     }
   }
 
   handlePin() {
-    this.isPin = !this.isPin;
+    this.noteInput.IsPinned = !this.noteInput.IsPinned;
   }
 
   onTitleClick() {
