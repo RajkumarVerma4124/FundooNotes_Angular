@@ -35,6 +35,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     word-break: break-all;
+    // word-wrap: normal;
 }
 
 button {
@@ -65,6 +66,8 @@ button:hover {
     margin: 5px 0px 5px 9px;
     padding-right: 9px;
     word-break: break-all;
+    // word-wrap: normal;
+    // flex-wrap: wrap;
 }
 
 .note_icons {
@@ -82,6 +85,7 @@ button:hover {
     .note {
         margin: 10px;
         width: 83%;
+        // margin-right: 85px;
     }
 }
 
@@ -89,5 +93,12 @@ button:hover {
     .note {
         margin: 10px;
         width: 83%;
+        // margin-right: 55px;
     }
 }
+
+// @media (max-width: 960px) {
+//     .display_note {
+//         justify-content: center;
+//     }
+// }

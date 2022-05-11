@@ -16,17 +16,17 @@ export class IconsComponent implements OnInit {
   @Input() noteDataObj: any
   @Output() changeNoteEvent = new EventEmitter<any>();
 
-
   constructor(private notesService: NoteService, private snackBar: MatSnackBar) {
    }
 
   ngOnInit() {
-
+    this.isArchive = this.noteDataObj.isArchive;
+    this.isTrash = this.noteDataObj.isTrash;
   }
 
   ngOnChnages() {
-    this.isArchive = this.noteDataObj.isArchive;
-    this.isTrash = this.noteDataObj.isTrash;
+    // this.isArchive = this.noteDataObj.isArchive;
+    // this.isTrash = this.noteDataObj.isTrash;
   }
 
   changeTrashStatus(noteData: any) {

@@ -26,6 +26,10 @@ export class GetallnotesComponent implements OnInit {
       console.log("Got Users Notes Successfully", response.data);
       this.userNoteList = response.data;
       this.userNoteList.reverse();
+      this.userNoteList = this.userNoteList.filter((object: any) => {
+        // console.log(object)
+        return object.isTrash === false && object.isArchive === false;
+      })
     });
   }
 

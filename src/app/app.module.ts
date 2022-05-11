@@ -35,6 +35,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
+import { ArchivednotesComponent } from './components/archivednotes/archivednotes.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     GetallnotesComponent,
     UpdatenoteComponent,
     PagenotfoundComponent,
+    TrashnotesComponent,
+    ArchivednotesComponent,
   ],
   imports: [
     BrowserModule,

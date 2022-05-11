@@ -8,6 +8,8 @@ import { RegisterationComponent } from './components/registeration/registeration
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { AuthenticationGuard } from './authentication.guard'
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
+import { ArchivednotesComponent } from './components/archivednotes/archivednotes.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterationComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/dashboard/notes', pathMatch: 'full' },
       { path: 'notes', component: GetallnotesComponent },
+      { path: 'trashnotes', component: TrashnotesComponent },
+      { path: 'archivednotes', component: ArchivednotesComponent }
     ]
   },
   { path: '**', component: PagenotfoundComponent }

@@ -55,16 +55,35 @@
     <mat-sidenav-container class="example-sidenav-container">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [ngClass]="isMenuOpen == true ? 'mat_sideber' : 'mat_sideber_icons'">
             <mat-nav-list class="nav-list">
-                <a class="sidebar_active" mat-list-item><span class="sidebar_image"><img src="../../../assets/images/lightbulb_black_24dp.svg" /></span>
-                    <span class="sidebar_text">Notes</span></a>
-                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/notifications_black_24dp.svg" /></span>
-                    <span class="sidebar_text">Reminder</span></a>
-                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/edit_black_24dp.svg" /></span>
-                    <span class="sidebar_text">Label</span></a>
-                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/archive_black.svg" /></span>
-                    <span class="sidebar_text">Archive</span></a>
-                <a class="sidebar_hover" mat-list-item><span class="sidebar_image sidebar_image_hover"><img src="../../../assets/images/black_line_delete.svg" /></span>
-                    <span class="sidebar_text">Trash</span></a>
+                <a class="sidebar_active" mat-list-item routerLink="notes">
+                    <span class="sidebar_image">
+                        <img src="../../../assets/images/lightbulb_black_24dp.svg" /></span>
+                    <span class="sidebar_text">Notes</span>
+                </a>
+                <a class="sidebar_hover" mat-list-item>
+                    <span class="sidebar_image sidebar_image_hover">
+                        <img src="../../../assets/images/notifications_black_24dp.svg" />
+                    </span>
+                    <span class="sidebar_text">Reminder</span>
+                </a>
+                <a class="sidebar_hover" mat-list-item>
+                    <span class="sidebar_image sidebar_image_hover">
+                        <img src="../../../assets/images/edit_black_24dp.svg" />
+                    </span>
+                    <span class="sidebar_text">Label</span>
+                </a>
+                <a class="sidebar_hover" mat-list-item routerLink="archivednotes">
+                    <span class="sidebar_image sidebar_image_hover">
+                        <img src="../../../assets/images/archive_black.svg" />
+                    </span>
+                    <span class="sidebar_text">Archive</span>
+                </a>
+                <a class="sidebar_hover" mat-list-item routerLink="trashnotes">
+                    <span class="sidebar_image sidebar_image_hover">
+                        <img src="../../../assets/images/black_line_delete.svg" />
+                    </span>
+                    <span class="sidebar_text">Trash</span>
+                </a>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content [ngClass]="isMenuOpen == true ? 'mat-sidenav-open' : 'mat-sidenav-close'">
