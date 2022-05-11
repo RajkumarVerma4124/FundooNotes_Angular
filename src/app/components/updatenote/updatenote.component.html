@@ -1,0 +1,38 @@
+<div>
+    <div class="notetwo_top">
+        <div class='title'>
+            <textarea class="note_title" matInput mat-dialog-title [(ngModel)]="this.noteInput.Title" (ngModelChange)="detectChange($event)"></textarea>
+        </div>
+        <div *ngIf="isPin">
+            <button *ngIf="isPin" mat-icon-button matTooltip="unpin note" (click)="handlePin()" class="pin-button">
+            <img
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwMCIgZD0iTTE3IDRhMiAyIDAgMCAwLTItMkg5Yy0xLjEgMC0yIC45LTIgMnY3bC0yIDN2Mmg2djVsMSAxIDEtMXYtNWg2di0ybC0yLTNWNHoiLz4KPC9zdmc+Cg==" />
+        </button>
+        </div>
+        <div *ngIf="!isPin">
+            <button *ngIf="!isPin" mat-icon-button matTooltip="pin note" (click)="handlePin()" class="pin-button">
+            <img
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwMCIgZD0iTTE3IDR2N2wyIDN2MmgtNnY1bC0xIDEtMS0xdi01SDV2LTJsMi0zVjRjMC0xLjEuOS0yIDItMmg2YzEuMTEgMCAyIC44OSAyIDJ6TTkgNHY3Ljc1TDcuNSAxNGg5TDE1IDExLjc1VjRIOXoiLz4KPC9zdmc+Cg==" />
+        </button>
+        </div>
+    </div>
+
+    <div class="notetwo_middle">
+        <div class='description'>
+            <textarea class="note_description" type="text" matInput mat-dialog-content [(ngModel)]="this.noteInput.Description" style="min-height: 100px;" (ngModelChange)="detectChange($event)"></textarea>
+        </div>
+    </div>
+
+    <div class="notetwo_bottom" fxLayout="row">
+        <app-icons></app-icons>
+        <div class="undo_icon" fxLayout="row">
+            <button mat-icon-button matTooltip="Undo">
+            <mat-icon>undo</mat-icon>
+        </button>
+            <button mat-icon-button matTooltip="Redo">
+            <mat-icon>redo</mat-icon>
+        </button>
+        </div>
+        <button class="closebutton" mat-button [mat-dialog-close]="true" matTooltip="Update" (click)="updateNote()">Close</button>
+    </div>
+</div>

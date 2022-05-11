@@ -1,0 +1,88 @@
+.notetwo_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 90px;
+    margin-top: -18px;
+}
+
+.notetwo_middle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 85px;
+}
+
+.notetwo_bottom {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    flex: 0.9;
+}
+
+.description {
+    flex: 0.9;
+}
+
+.note_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: medium;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 45px
+}
+
+.note_description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-around;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 40px;
+}
+
+::ng-deep textarea {
+    resize: none !important;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    /* user can resize vertically, but width is fixed */
+}
+
+.closebutton {
+    border: none;
+    outline: none;
+    background-color: transparent !important;
+    color: rgba(0, 0, 0, .87) !important;
+    text-transform: capitalize !important;
+    padding: 5px 20px !important;
+}
+
+.closebutton:hover {
+    background-color: rgba(0, 0, 0, .04) !important;
+}
+
+.undo_icon {
+    opacity: 1;
+    margin-left: 10px;
+}
+
+.pin-button {
+    margin-top: -10px;
+}
+
+::ng-deep mat-dialog-container {
+    border-radius: 10px !important;
+}

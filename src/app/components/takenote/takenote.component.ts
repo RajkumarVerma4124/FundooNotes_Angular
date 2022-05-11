@@ -37,8 +37,6 @@ export class TakenoteComponent implements OnInit {
   @Input() noteInput: NoteModel = this.noteType();
   @Output() addNoteEvent = new EventEmitter<any>();
 
-
-
   ngOnInit(): void {
   }
 

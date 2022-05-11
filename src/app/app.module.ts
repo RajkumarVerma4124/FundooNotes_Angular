@@ -30,6 +30,10 @@ import { GetallnotesComponent } from './components/getallnotes/getallnotes.compo
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthguardService } from './services/authguardServices/authguard.service';
+import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -44,6 +48,8 @@ import { AuthguardService } from './services/authguardServices/authguard.service
     TakenoteComponent,
     DisplaynoteComponent,
     GetallnotesComponent,
+    UpdatenoteComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +85,7 @@ import { AuthguardService } from './services/authguardServices/authguard.service
     MatCardModule,
     MatGridListModule,
     FlexLayoutModule,
+    MatDialogModule,
   ],
   providers: [
     AuthguardService

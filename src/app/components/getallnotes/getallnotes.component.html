@@ -4,7 +4,7 @@
     </div>
     <div class="displayNotes">
         <div class="notes">
-            <app-displaynote [userNoteList]="userNoteList"></app-displaynote>
+            <app-displaynote [userNoteList]="userNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
         </div>
     </div>
 </div>

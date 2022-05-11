@@ -1,6 +1,6 @@
 <div class="display_note">
     <div class='note' *ngFor="let noteData of userNoteList">
-        <div class='note_titles' fxLayout="row" fxLayoutAlign="space-between center">
+        <div class='note_titles' fxLayout="row" fxLayoutAlign="space-between center" (click)="openDialog(noteData)">
             <div class='note_title'>{{noteData.title}}</div>
             <div class='pushpin'>
                 <div *ngIf="isPin">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class='notes_description' fxLayout="row">{{noteData.description}}</div>
+        <div class='notes_description' fxLayout="row" (click)="openDialog(noteData)">{{noteData.description}}</div>
 
         <div class="note_icons" fxLayout="row">
             <app-icons class="note_icon"></app-icons>

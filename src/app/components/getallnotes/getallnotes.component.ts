@@ -8,14 +8,13 @@ import { NoteModel } from 'src/app/models/notesModel';
   styleUrls: ['./getallnotes.component.scss']
 })
 export class GetallnotesComponent implements OnInit {
-
   isPin = false;
   userNoteList: any;
   constructor(private noteService: NoteService) {
-    this.getUsersNotes();
   }
 
   ngOnInit(): void {
+    this.getUsersNotes();
   }
 
   handlePin() {
@@ -32,7 +31,14 @@ export class GetallnotesComponent implements OnInit {
 
   recieveAddedNote(newnote:any){
     console.log(newnote);
+    this.userNoteList.reverse();
     this.userNoteList.push(newnote);
     this.userNoteList.reverse();
+  }
+
+
+  recievedUpdatedData(note: any) {
+    console.log(note.data);
+    this.getUsersNotes();
   }
 }

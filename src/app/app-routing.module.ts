@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterationComponent } from './components/registeration/registeration.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { AuthenticationGuard } from './authentication.guard'
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterationComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: '', redirectTo: '/dashboard/notes', pathMatch: 'full' },
       { path: 'notes', component: GetallnotesComponent },
     ]
-  }
+  },
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({
