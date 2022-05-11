@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/services/noteServices/note.service';
-
-
 
 @Component({
   selector: 'app-displaynote',
@@ -14,26 +12,39 @@ import { NoteService } from 'src/app/services/noteServices/note.service';
 export class DisplaynoteComponent implements OnInit {
   isPin = false;
   updatedNoteData: any;
+  snackBarRef: any;
+  isIconVisible: boolean = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   @Input() userNoteList: any;
   @Output() updateNoteEvent = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog, private notesService: NoteService, private snackBar: MatSnackBar) { 
-    console.log(this.userNoteList);
   }
 
   ngOnInit(): void {
   }
 
   openDialog(noteData: any) {
-    const dialogRef = this.dialog.open(UpdatenoteComponent, {
-      width: '500px',
-      data: noteData
-    });
+    if(noteData.isTrash === true)
+    { 
+      this.snackBar.open('Can’t edit in Recycle Bin', 'Failed', {
+        duration: 4000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      })
+    }
+    else{
+      const dialogRef = this.dialog.open(UpdatenoteComponent, {
+        width: '500px',
+        data: noteData
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed:' +result);
-      this.refreshUpdatedNoteData(result)
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        // console.log('The dialog was closed:' +result);
+        this.refreshUpdatedNoteData(result)
+      });
+    }
   }
 
   handlePin(noteData: any) {
@@ -47,5 +58,9 @@ export class DisplaynoteComponent implements OnInit {
     this.updatedNoteData = $event;
     // console.log("Note Refresh Updated",this.updatedNoteData)
     this.updateNoteEvent.emit(this.updatedNoteData);
+  }
+
+  noteClicked(){
+    this.isIconVisible = !this.isIconVisible
   }
 }

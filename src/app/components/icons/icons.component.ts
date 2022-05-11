@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/services/noteServices/note.service';
+import { NoteColorModel } from 'src/app/models/noteColorModel';
+
 
 @Component({
   selector: 'app-icons',
@@ -14,7 +16,32 @@ export class IconsComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   @Input() noteDataObj: any
-  @Output() changeNoteEvent = new EventEmitter<any>();
+  @Output() changeNoteStatus = new EventEmitter<any>();
+  colorsPaletteArr = [
+                        { code: "white", name: "Default" }, 
+                        { code: "#f28b82", name: "Red" }, 
+                        { code: "#fbbc04", name: "Orange" }, 
+                        { code: "#fff475", name: "Yellow" }, 
+                        { code: "#ccff90", name: "Green" }, 
+                        { code: "#a7ffeb", name: "Teal" },
+                        { code: "#cbf0f8", name: "Blue" }, 
+                        { code: "#aecbfa", name: "Dark blue" }, 
+                        { code: "#d7aefb", name: "Purple" }, 
+                        { code: "#fdcfe8", name: "Pink" }, 
+                        { code: "#e6c9a8", name: "Brown" }, 
+                        { code: "#e8eaed", name: "Grey" }
+                     ];
+
+  noteColor!: NoteColorModel;
+
+  noteType(): NoteColorModel {
+    return this.noteColor = {
+      noteId: "",
+      newColor: "",
+    }
+  }
+
+  @Input() noteColorInput: NoteColorModel = this.noteType();
 
   constructor(private notesService: NoteService, private snackBar: MatSnackBar) {
    }
@@ -33,7 +60,7 @@ export class IconsComponent implements OnInit {
     this.isTrash = !noteData.isTrash;
     this.notesService.trashNote(this.noteDataObj.notesId).subscribe((response: any) => {
       console.log("Note Trashed", response);
-      this.changeNoteEvent.emit(response);
+      this.changeNoteStatus.emit(response);
       if (response.data.isTrash === true) {
        this.snackBarRef = this.snackBar.open('Note binned', 'Success', {
           duration: 4000,
@@ -57,7 +84,7 @@ export class IconsComponent implements OnInit {
   deleteNote() {
     this.notesService.deleteNote(this.noteDataObj.notesId).subscribe((response: any) => {
       console.log("Note Deleted Successfully", response);
-      this.changeNoteEvent.emit(response);
+      this.changeNoteStatus.emit(response);
       this.snackBarRef = this.snackBar.open('Note Deleted', 'Success', {
           duration: 4000,
           horizontalPosition: this.horizontalPosition,
@@ -70,7 +97,7 @@ export class IconsComponent implements OnInit {
     this.isArchive = !noteData.isArchive;  
     this.notesService.archiveNote(this.noteDataObj.notesId).subscribe((response: any) => {
       console.log("Note Archive Successfully", response.data);
-      this.changeNoteEvent.emit(response);
+      this.changeNoteStatus.emit(response);
       if (response.data.isArchive === true) {
         this.snackBar.open('Note Archived', 'Success', {
           duration: 4000,
@@ -85,6 +112,15 @@ export class IconsComponent implements OnInit {
           verticalPosition: this.verticalPosition,
         })
       }
+    })
+  }
+
+  changeNotesColor(newColor: any) {
+    this.noteColorInput.noteId = this.noteDataObj.notesId;
+    this.noteColorInput.newColor = newColor; 
+    this.notesService.changeNoteColor(this.noteColor).subscribe((response: any) => {
+      console.log("Note Color Changed Successfully", response);
+      this.changeNoteStatus.emit(response);
     })
   }
 }

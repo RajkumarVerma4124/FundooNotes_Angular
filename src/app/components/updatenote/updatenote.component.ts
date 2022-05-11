@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UpdateNote } from 'src/app/models/updateNoteModel';
+import { UpdateNoteModel } from 'src/app/models/updateNoteModel';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 
 
@@ -10,7 +10,7 @@ import { NoteService } from 'src/app/services/noteServices/note.service';
   styleUrls: ['./updatenote.component.scss']
 })
 export class UpdatenoteComponent implements OnInit {
-  note!: UpdateNote;
+  note!: UpdateNoteModel;
   valueChanged: boolean = false;
   isPin: boolean = false;
   tempTitleStr: string = '';
@@ -18,7 +18,7 @@ export class UpdatenoteComponent implements OnInit {
   noteId: any;
 
 
-  noteType(): UpdateNote {
+  noteType(): UpdateNoteModel {
     return this.note = {
       Title: "",
       Description: "",
@@ -26,7 +26,7 @@ export class UpdatenoteComponent implements OnInit {
     }
   }
 
-  @Input() noteInput: UpdateNote = this.noteType();
+  @Input() noteInput: UpdateNoteModel = this.noteType();
 
   constructor(public dialogRef: MatDialogRef<UpdatenoteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private noteService: NoteService,) { 

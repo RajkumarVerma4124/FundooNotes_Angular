@@ -1,3 +1,7 @@
+<div class="empty-archive" *ngIf="isArchivedNotes" fxLayout="column" fxLayoutAlign="center center">
+    <img id="icons" class="archive_icon" src="../../../assets/images/archive_black.svg">
+    <div class="archive_title">Your archived notes appear here</div>
+</div>
 <div class="notesContainer_Main">
     <div class="displayNotes">
         <app-displaynote [userNoteList]="userNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>

@@ -1,4 +1,4 @@
-<div>
+<div [style.background]="data.color" style="padding: 24px;">
     <div class="notetwo_top">
         <div class='title'>
             <textarea class="note_title" matInput mat-dialog-title [(ngModel)]="this.noteInput.Title" (ngModelChange)="detectChange($event)"></textarea>

@@ -23,7 +23,7 @@ export class GetallnotesComponent implements OnInit {
 
   getUsersNotes() {
     this.noteService.getUsersNotes().subscribe((response: any) => {
-      console.log("Got Users Notes Successfully", response.data);
+      console.log("Got Users Notes Successfully", response);
       this.userNoteList = response.data;
       this.userNoteList.reverse();
       this.userNoteList = this.userNoteList.filter((object: any) => {

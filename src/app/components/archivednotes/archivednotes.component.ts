@@ -8,6 +8,7 @@ import { NoteService } from 'src/app/services/noteServices/note.service';
 })
 export class ArchivednotesComponent implements OnInit {
   userNoteList: any;
+  isArchivedNotes = true;
 
   constructor(private noteService: NoteService) { }
 
@@ -21,17 +22,18 @@ export class ArchivednotesComponent implements OnInit {
       this.userNoteList = response.data;
       this.userNoteList.reverse();
       this.userNoteList = this.userNoteList.filter((object: any) => {
-        console.log(object)
         return object.isArchive === true;
       })
-      // console.log(this.userNoteList);
+      if(this.userNoteList.length != 0){ 
+        this.isArchivedNotes = false
+      }
+      else {
+        this.isArchivedNotes = true
+      }
     })
   }
 
   recievedUpdatedData(trashData: any) {
-    // console.log(trashData)
     this.getArchivedNotesList();
   }
-
-
 }

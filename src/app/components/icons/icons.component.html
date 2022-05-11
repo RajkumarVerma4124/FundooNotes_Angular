@@ -1,15 +1,20 @@
 <div class="notes_icons">
-    <div>
-        <button mat-icon-button matTooltip="Remind me" *ngIf="!isTrash"> 
+    <button mat-icon-button matTooltip="Remind me" *ngIf="!isTrash"> 
         <img src="/assets/images/add_alert_black.svg" width="20px" height="20px">
     </button>
-    </div>
-
     <button mat-icon-button matTooltip="Collaborator" *ngIf="!isTrash"> 
         <img src="/assets/images/add_person.svg" width="20px" height="20px">
     </button>
-    <button mat-icon-button matTooltip="Background options" *ngIf="!isTrash"> 
-        <img src="/assets/images/palette_black.svg" width="20px" height="20px"></button>
+    <button mat-icon-button matTooltip="Background options" *ngIf="!isTrash" [matMenuTriggerFor]="changecolor"> 
+        <img src="/assets/images/palette_black.svg" width="20px" height="20px">
+    </button>
+    <mat-menu #changecolor="matMenu">
+        <div fxLayout="row wrap" class="color_palette">
+            <div *ngFor="let noteColor of colorsPaletteArr" class="note-color">
+                <button class="color" mat-icon-button mat-raised-button [matTooltip]="noteColor.name" [style.background]="noteColor?.code" (click)="changeNotesColor(noteColor?.code)"></button>
+            </div>
+        </div>
+    </mat-menu>
     <button mat-icon-button matTooltip="Add image" *ngIf="!isTrash"> 
         <img src="/assets/images/image_black.svg" width="20px" height="20px">
     </button>

@@ -245,3 +245,11 @@ button:hover {
         margin-left: -10px;
     }
 }
+
+@media (max-width: 400px) {
+    .content {
+        letter-spacing: 0.00625em;
+        font-size: 0.9em;
+        word-spacing: 0px;
+    }
+}

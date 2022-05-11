@@ -8,6 +8,29 @@
     margin-top: 50px;
 }
 
+.archive_icon {
+    background-size: 120px 120px;
+    height: 120px;
+    margin: 20px;
+    opacity: .1;
+    width: 120px;
+}
+
+.archive_title {
+    color: #80868b;
+    cursor: default;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.75rem;
+}
+
+.empty-archive {
+    width: 100%;
+    height: 70%;
+}
+
 @media (max-width: 600px) {
     .displayNotes {
         margin-left: 0px;

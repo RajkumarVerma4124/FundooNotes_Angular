@@ -1,5 +1,5 @@
-<div class="display_note">
-    <div class='note' *ngFor="let noteData of userNoteList">
+<div class="display_note" (click)="noteClicked()">
+    <div class='note' *ngFor="let noteData of userNoteList" [style.background]="noteData.color">
         <div class='note_titles' fxLayout="row" fxLayoutAlign="space-between center">
             <div class='note_title' (click)="openDialog(noteData)">{{noteData.title}}</div>
             <div class='pushpin'>
@@ -18,8 +18,8 @@
 
         <div class='notes_description' fxLayout="row" (click)="openDialog(noteData)">{{noteData.description}}</div>
 
-        <div class="note_icons" fxLayout="row">
-            <app-icons class="note_icon" [noteDataObj]="noteData" (changeNoteEvent)="refreshUpdatedNoteData($event)"></app-icons>
+        <div [ngClass]="isIconVisible == true ? 'note_icons_visible' : 'note_icons'" fxLayout="row">
+            <app-icons class="note_icon" [noteDataObj]="noteData" (changeNoteStatus)="refreshUpdatedNoteData($event)"></app-icons>
         </div>
     </div>
 </div>

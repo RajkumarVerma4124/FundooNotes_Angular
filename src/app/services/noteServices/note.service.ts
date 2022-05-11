@@ -110,14 +110,14 @@ export class NoteService {
     return this.httpService.patchService('/Notes/IsPinned?noteId=' +noteId, {}, true, header);
   }
 
-  changeNoteColor(newColor: any, noteId: any) {
-    console.log(newColor, noteId)
+  changeNoteColor(noteColorData: any) {
+    console.log(noteColorData)
     let header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.patchService('/Notes/colour', { newColor: newColor, noteId: noteId }, true, header);
+    return this.httpService.patchService('/Notes/colour', noteColorData, true, header);
   }
 }

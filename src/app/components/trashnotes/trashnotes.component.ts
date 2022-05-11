@@ -8,8 +8,11 @@ import { NoteService } from 'src/app/services/noteServices/note.service';
 })
 export class TrashnotesComponent implements OnInit {
   userNoteList: any;
+  isTrashNotes = true;
 
-  constructor(private noteService: NoteService) { }
+  constructor(private noteService: NoteService) {
+
+   }
 
   ngOnInit(): void {
     this.getTrashNotesList();
@@ -21,15 +24,18 @@ export class TrashnotesComponent implements OnInit {
       this.userNoteList = response.data;
       this.userNoteList.reverse();
       this.userNoteList = this.userNoteList.filter((object: any) => {
-        console.log(object)
         return object.isTrash === true;
       })
-      // console.log(this.userNoteList);
+      if (this.userNoteList.length != 0) {
+        this.isTrashNotes = false
+      }
+      else {
+        this.isTrashNotes = true
+      }
     })
   }
 
   recievedUpdatedData(trashData: any) {
-    // console.log(trashData)
     this.getTrashNotesList();
   }
 

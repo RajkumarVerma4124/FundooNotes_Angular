@@ -1,3 +1,7 @@
+<div class="empty-trash" *ngIf="isTrashNotes" fxLayout="column" fxLayoutAlign="center center">
+    <img id="icons" class="trash_icon" src="../../../assets/images/black_line_delete.svg">
+    <div class="trash_title">No notes in Recycle Bin</div>
+</div>
 <div class="notesContainer_Main">
     <div class="displayNotes">
         <app-displaynote [userNoteList]="userNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
