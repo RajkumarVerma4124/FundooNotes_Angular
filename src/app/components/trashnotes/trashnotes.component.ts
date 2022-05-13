@@ -23,8 +23,8 @@ export class TrashnotesComponent implements OnInit {
       console.log("Retrieved All Trash Notes Successfully", response.data);
       this.userNoteList = response.data;
       this.userNoteList.reverse();
-      this.userNoteList = this.userNoteList.filter((object: any) => {
-        return object.isTrash === true;
+      this.userNoteList = this.userNoteList.filter((userNote: any) => {
+        return userNote.isTrash === true;
       })
       if (this.userNoteList.length != 0) {
         this.isTrashNotes = false

@@ -1,5 +1,11 @@
 <div class="display_note" (click)="noteClicked()">
-    <div class='note' *ngFor="let noteData of userNoteList" [style.background]="noteData.color">
+    <div class='note' *ngFor="let noteData of userNoteList | filter : searchString" [ngStyle]="{ 'background-color': noteData.color }">
+        <div class="noteimage">
+            <div fxLayout="row" *ngFor="let noteDataImage of noteData.imageList">
+                <img [src]="noteDataImage?.imageUrl" width="100%" style="border-radius: 7px 7px 0px 0px">
+            </div>
+        </div>
+        <!-- <img [src]="noteData.imageList?.[0]?.imageUrl" width="100%" style="border-radius: 7px 7px 0px 0px"> -->
         <div class='note_titles' fxLayout="row" fxLayoutAlign="space-between center">
             <div class='note_title' (click)="openDialog(noteData)">{{noteData.title}}</div>
             <div class='pushpin'>
@@ -15,9 +21,7 @@
                 </div>
             </div>
         </div>
-
         <div class='notes_description' fxLayout="row" (click)="openDialog(noteData)">{{noteData.description}}</div>
-
         <div [ngClass]="isIconVisible == true ? 'note_icons_visible' : 'note_icons'" fxLayout="row">
             <app-icons class="note_icon" [noteDataObj]="noteData" (changeNoteStatus)="refreshUpdatedNoteData($event)"></app-icons>
         </div>

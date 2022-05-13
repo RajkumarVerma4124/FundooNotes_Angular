@@ -11,12 +11,13 @@
     <mat-menu #changecolor="matMenu">
         <div fxLayout="row wrap" class="color_palette">
             <div *ngFor="let noteColor of colorsPaletteArr" class="note-color">
-                <button class="color" mat-icon-button mat-raised-button [matTooltip]="noteColor.name" [style.background]="noteColor?.code" (click)="changeNotesColor(noteColor?.code)"></button>
+                <button class="color" mat-icon-button mat-raised-button [matTooltip]="noteColor.name" [ngStyle]="{ 'background-color': noteColor.color }" (click)="changeNotesColor(noteColor?.color)"></button>
             </div>
         </div>
     </mat-menu>
-    <button mat-icon-button matTooltip="Add image" *ngIf="!isTrash"> 
-        <img src="/assets/images/image_black.svg" width="20px" height="20px">
+    <button mat-icon-button matTooltip="Add image" *ngIf="!isTrash">    
+        <img class="image_uploader" src="/assets/images/image_black.svg" width="20px" height="20px">
+        <input type='file' accept=".png, .jpg, .jpeg" (change)="onSelectFile($event)" style="opacity: 0; margin-left: -30px; width: 28px;"> 
     </button>
     <button mat-icon-button *ngIf="!isArchive && !isTrash" matTooltip="Archive" (click)="changeArchiveStatus(noteDataObj)"> 
         <img src="/assets/images/archive_black.svg" width="20px" height="20px">
@@ -35,5 +36,6 @@
     </button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="changeTrashStatus(noteDataObj)">Delete note</button>
+        <button mat-menu-item (click)="deleteNotesImage(noteDataObj)">Remove Image</button>
     </mat-menu>
 </div>

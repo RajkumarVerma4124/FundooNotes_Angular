@@ -3,12 +3,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateNoteModel } from 'src/app/models/updateNoteModel';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 
-
 @Component({
   selector: 'app-updatenote',
   templateUrl: './updatenote.component.html',
   styleUrls: ['./updatenote.component.scss']
 })
+
 export class UpdatenoteComponent implements OnInit {
   note!: UpdateNoteModel;
   valueChanged: boolean = false;
@@ -16,8 +16,10 @@ export class UpdatenoteComponent implements OnInit {
   tempTitleStr: string = '';
   tempDescStr: string = '';
   noteId: any;
-
-
+  imageUrl: any = [];
+  color: string = ''
+  iscolorchange: boolean = false
+  
   noteType(): UpdateNoteModel {
     return this.note = {
       Title: "",
@@ -38,6 +40,7 @@ export class UpdatenoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     // console.log(this.valueChanged)
     // console.log(this.tempTitleStr, this.tempDescStr)
     // console.log(this.noteInput.Title, this.noteInput.Description)
@@ -48,7 +51,10 @@ export class UpdatenoteComponent implements OnInit {
   }
 
   handlePin() {
-    this.isPin = !this.isPin;
+    this.data.isPinned = !this.data.isPinned;
+    this.noteService.pinNote(this.data.notesId).subscribe((response: any) => {
+      console.log("Note Pin status changed", response.data);
+    })
   }
 
   updateNote() {
@@ -64,7 +70,21 @@ export class UpdatenoteComponent implements OnInit {
 
   detectChange(value: any) {
     this.valueChanged = true;
-    // console.log('Value changed--->' + this.valueChanged);
+    console.log('Value changed--->' + this.valueChanged);
   }
 
+  refreshUpdatedNoteData(newNoteData: any) {
+    if(newNoteData.success === true){ 
+      this.data.imageList.splice(0, 1);
+      console.log("After updation", this.data)
+    }
+    else if (newNoteData?.[0] != null) {
+      console.log(this.data)
+      this.data.imageList.push(newNoteData?.[0])
+      console.log("After updation", this.data)
+    }
+    else {
+      this.data.color = newNoteData.color
+    }
+  }
 }

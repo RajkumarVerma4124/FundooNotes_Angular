@@ -29,7 +29,7 @@ export class TakenoteComponent implements OnInit {
       Description: "",
       Color: "white",
       Reminder: "2022-05-20T11:02:38.430Z",
-      ImagePaths: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+      ImagePaths: "",
       IsArchive: false,
       IsPinned: false,
       IsTrash: false
@@ -70,19 +70,25 @@ export class TakenoteComponent implements OnInit {
 
   addNote() {
     this.isExpand = false;
+    console.log(this.noteInput)
     if (this.noteInput.Title != '' || this.noteInput.Description != '') {
-      this.noteService.createNote(this.noteInput).subscribe((response: any) => {
+      let formData: FormData = new FormData();
+      formData.append('Title', this.noteInput.Title);
+      formData.append('Description', this.noteInput.Description);
+      formData.append('Color', this.noteInput.Color);
+      formData.append('Reminder', this.noteInput.Reminder);
+      formData.append('ImagePaths', this.noteInput.ImagePaths);
+      formData.append('IsArchive', JSON.stringify(this.noteInput.IsArchive));
+      formData.append('IsPinned', JSON.stringify(this.noteInput.IsPinned));
+      formData.append('IsTrash', JSON.stringify(this.noteInput.IsTrash));
+      this.noteService.createNote(formData).subscribe((response: any) => {
         console.log("Notes Created successfull", response);
         this.snackBar.open('Note Created', '', {
           duration: 4000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         })
-        this.addNoteEvent.emit(response.data.notesDetails);
-        this.noteInput.Title = "";
-        this.noteInput.Description = "";
-        this.tempTitleStr= "";
-        this.tempDescStr="";
+        this.addNoteEvent.emit(response.data);
       }, error => {
         console.log(error);
         this.snackBar.open(error.error.message, '', {
@@ -92,6 +98,16 @@ export class TakenoteComponent implements OnInit {
         })
       });
     }
+    this.noteInput.Title = "";
+    this.noteInput.Description = "";
+    this.noteInput.Color = "";
+    this.noteInput.Reminder = "";
+    this.noteInput.ImagePaths = "";
+    this.noteInput.IsArchive = false;
+    this.noteInput.IsPinned = false;
+    this.noteInput.IsTrash = false;
+    this.tempTitleStr = "";
+    this.tempDescStr = "";
   }
 
   handlePin() {
@@ -131,6 +147,23 @@ export class TakenoteComponent implements OnInit {
     }
     else if(this.onDesc === true){
       this.noteInput.Description = this.tempDescStr;
+    }
+  }
+
+  refreshTakeNote(noteData: any){
+    console.log(noteData)
+    if (noteData.IsArchive && noteData.IsTrash) {
+      this.noteInput.IsArchive = noteData.IsArchive;
+      this.noteInput.IsTrash = noteData.IsTrash;
+      console.log(this.noteInput.IsTrash, this.noteInput.IsArchive)
+    }
+    else if (noteData.Color !== null ){
+      this.noteInput.Color = noteData.Color != null ? noteData.Color : "";
+      console.log(this.noteInput.Color)
+    }
+    else{ 
+      this.noteInput.ImagePaths = noteData.ImagePaths
+      console.log(this.noteInput.ImagePaths)
     }
   }
 }

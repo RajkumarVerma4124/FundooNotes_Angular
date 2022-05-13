@@ -14,10 +14,10 @@ export class NoteService {
   }
 
   createNote(noteData: any) {
-    // console.log(reqData)
+    console.log(noteData)
     let header = {
       headers: new HttpHeaders({
-        'Content-type': 'application/json',
+        // 'Content-type': 'multipart/form-data',
         'Authorization': `Bearer ${this.token}`
       })
     }
@@ -43,7 +43,7 @@ export class NoteService {
     }
     return this.httpService.getService('/Notes/GetAll', true, header);
   }
-  
+
   getNote(noteId: any) {
     console.log(noteId)
     let header = {
@@ -74,7 +74,7 @@ export class NoteService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.patchService('/Notes/IsTrash?noteId=' +noteId, {}, true, header);
+    return this.httpService.patchService('/Notes/IsTrash?noteId=' + noteId, {}, true, header);
   }
 
   deleteNote(noteId: any) {
@@ -85,7 +85,7 @@ export class NoteService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.deleteService('/Notes/Delete?noteId=' +noteId, true, header);
+    return this.httpService.deleteService('/Notes/Delete?noteId=' + noteId, true, header);
   }
 
   archiveNote(noteId: any) {
@@ -96,7 +96,7 @@ export class NoteService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.patchService('/Notes/IsArchive?noteId=' +noteId, {}, true, header);
+    return this.httpService.patchService('/Notes/IsArchive?noteId=' + noteId, {}, true, header);
   }
 
   pinNote(noteId: any) {
@@ -107,7 +107,7 @@ export class NoteService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.patchService('/Notes/IsPinned?noteId=' +noteId, {}, true, header);
+    return this.httpService.patchService('/Notes/IsPinned?noteId=' + noteId, {}, true, header);
   }
 
   changeNoteColor(noteColorData: any) {
@@ -119,5 +119,26 @@ export class NoteService {
       })
     }
     return this.httpService.patchService('/Notes/colour', noteColorData, true, header);
+  }
+
+  addNoteImage(noteId: any, image: any) {
+    let header = {
+      headers: new HttpHeaders({
+        // 'Content-type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+    return this.httpService.postService('/Notes/AddImages/' + noteId, image, true, header);
+  }
+
+  deleteNoteImage(noteId: any, imageId: any) {
+    console.log(noteId, imageId);
+    let header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+    return this.httpService.putService(`/Notes/DeleteImage?noteId=${noteId}&imageId=${imageId}`, {}, true, header);
   }
 }

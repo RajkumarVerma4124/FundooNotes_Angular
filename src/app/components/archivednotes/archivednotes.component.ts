@@ -18,12 +18,13 @@ export class ArchivednotesComponent implements OnInit {
 
   getArchivedNotesList() {
     this.noteService.getUsersNotes().subscribe((response: any) => {
-      console.log("Retrieved All Archived Notes Successfully", response.data);
       this.userNoteList = response.data;
       this.userNoteList.reverse();
-      this.userNoteList = this.userNoteList.filter((object: any) => {
-        return object.isArchive === true;
+      this.userNoteList = this.userNoteList.filter((userNote: any) => {
+        return userNote.isArchive === true && userNote.isTrash === false;
       })
+      console.log("Retrieved All Archived Notes Successfully", this.userNoteList);
+
       if(this.userNoteList.length != 0){ 
         this.isArchivedNotes = false
       }
@@ -34,6 +35,9 @@ export class ArchivednotesComponent implements OnInit {
   }
 
   recievedUpdatedData(trashData: any) {
-    this.getArchivedNotesList();
+    console.log(trashData)
+    setTimeout(() => {
+      this.getArchivedNotesList();
+    }, 50);
   }
 }

@@ -16,7 +16,7 @@
                 <button mat-icon-button class="backIcon" (click)="clickBackIcon()">
                    <mat-icon>keyboard_backspace</mat-icon>
                 </button>
-                <input type="text" id="iconcross" autocomplete="off" matInput placeholder="Search" (keyup)="recieveSearchMsg($event)" [(ngModel)]="searchTerm" />
+                <input type="text" id="iconcross" autocomplete="off" matInput placeholder="Search" (keyup)="recieveSearchNote($event)" [(ngModel)]="searchTerm" />
                 <button mat-icon-button [ngClass]="searchActive == true ? 'iconcross iconactive' : 'iconcross'" (click)="clickCross()">
                     <img src="../../../assets/images/cross.svg" />
                 </button>

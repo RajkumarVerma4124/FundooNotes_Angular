@@ -8,6 +8,12 @@
     margin-bottom: 10px;
 }
 
+.noteHeading {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 15px 0 0 10px !important;
+}
+
 @media (max-width: 600px) {
     .displayNotes {
         margin-left: 0px;

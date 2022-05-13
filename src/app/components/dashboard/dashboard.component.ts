@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { DataService} from '../../services/dataServices/data.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private observer: BreakpointObserver) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private dataService: DataService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -63,9 +64,10 @@ export class DashboardComponent implements OnDestroy {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  recieveSearchMsg(stringData: any) {
-    console.log(stringData.target.value);
-    this.searchTerm = stringData.target.value;
+  recieveSearchNote(noteString: any) {
+    console.log(noteString.target.value);
+    this.searchTerm = noteString.target.value;
+    this.dataService.SendData(this.searchTerm);
     this.searchActive = true;
     if(this.searchTerm.length == 0)
     {

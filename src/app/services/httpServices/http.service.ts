@@ -13,10 +13,10 @@ export class HttpService {
     return this.httpClient.post(this.baseurl + url, reqData, token && httpOptions);
   }
 
-  patchService(url : string, reqData: any,  token: boolean = false, httpOptions: any){ 
+  patchService(url: string, reqData: any, token: boolean = false, httpOptions: any) {
     return this.httpClient.patch(this.baseurl + url, reqData, token && httpOptions);
   }
-  
+
   getService(url: string, token: boolean = false, httpOptions: any) {
     return this.httpClient.get(this.baseurl + url, token && httpOptions);
   }

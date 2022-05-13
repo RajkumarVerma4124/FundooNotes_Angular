@@ -10,6 +10,9 @@ import { NoteModel } from 'src/app/models/notesModel';
 export class GetallnotesComponent implements OnInit {
   isPin = false;
   userNoteList: any;
+  userotherNoteList: any;
+  isOtherNoteExist: boolean = false;
+  isotherNotesExists: boolean = false;
   constructor(private noteService: NoteService) {
   }
 
@@ -17,31 +20,45 @@ export class GetallnotesComponent implements OnInit {
     this.getUsersNotes();
   }
 
-  handlePin() {
-    this.isPin = !this.isPin;
-  }
-
   getUsersNotes() {
     this.noteService.getUsersNotes().subscribe((response: any) => {
       console.log("Got Users Notes Successfully", response);
       this.userNoteList = response.data;
       this.userNoteList.reverse();
-      this.userNoteList = this.userNoteList.filter((object: any) => {
-        // console.log(object)
-        return object.isTrash === false && object.isArchive === false;
+      this.userotherNoteList = response.data;
+      // this.userotherNoteList.reverse();
+      this.userNoteList = this.userNoteList.filter((userNote: any) => {
+        return userNote.isTrash === false && userNote.isArchive === false && userNote.isPinned == true;
       })
+      console.log(this.userNoteList)
+      this.userotherNoteList = this.userotherNoteList.filter((userNote: any) => {
+        return userNote.isTrash === false && userNote.isArchive === false && userNote.isPinned == false;
+      })
+      if(this.userotherNoteList.length != 0) {
+        this.isotherNotesExists == true;
+      }
+      console.log(this.userotherNoteList)
     });
   }
 
-  recieveAddedNote(newnote:any){
+  recieveAddedNote(newnote: any) {
     console.log(newnote);
-    this.userNoteList.reverse();
-    this.userNoteList.push(newnote);
-    this.userNoteList.reverse();
+    if(newnote.isPinned !== false) {
+      this.userNoteList.reverse();
+      this.userNoteList.push(newnote);
+      this.userNoteList.reverse();
+    }
+    else{
+      this.userotherNoteList.reverse();
+      this.userotherNoteList.push(newnote);
+      this.userotherNoteList.reverse();
+    }
+
   }
 
   recievedUpdatedData(note: any) {
-    console.log(note.data);
-    this.getUsersNotes();
+    setTimeout(() => {
+      this.getUsersNotes();
+    }, 50);
   }
 }

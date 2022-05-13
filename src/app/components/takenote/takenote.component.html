@@ -20,10 +20,10 @@
         </mat-card>
     </div>
     <div *ngIf="isExpand">
-        <mat-card fxLayout="column" class="takenotetwo">
+        <mat-card fxLayout="column" class="takenotetwo" [style.background]="noteInput.Color">
             <div class="notetwo_top">
                 <div class='title'>
-                    <textarea class="note_title" placeholder="Title" (keyup)="checkTitle($event)" [(ngModel)]="noteInput.Title" (click)="onTitleClick()"></textarea>
+                    <textarea class="note_title" placeholder="Title" (keyup)="checkTitle($event)" [(ngModel)]="noteInput.Title" (click)="onTitleClick()" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
                 </div>
                 <div *ngIf="noteInput.IsPinned">
                     <button mat-icon-button matTooltip="unpin note" (click)="handlePin()" class="pin-button">
@@ -39,14 +39,13 @@
 
             <div class="notetwo_middle">
                 <div class='description'>
-                    <textarea class="note_description" placeholder="Take a note...." (keyup)="checkDescription($event)" [(ngModel)]="noteInput.Description" (click)="onDescriptionClick()"></textarea>
+                    <textarea class="note_description" placeholder="Take a note...." (keyup)="checkDescription($event)" [(ngModel)]="noteInput.Description" (click)="onDescriptionClick()" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="20"></textarea>
                 </div>
             </div>
 
             <div class="notetwo_bottom" fxLayout="row">
-                <app-icons></app-icons>
+                <app-icons [noteDataObj]="noteModel" (changeNoteStatus)="refreshTakeNote($event)"></app-icons>
                 <div class="undo_icon" fxLayout="row">
-
                     <button mat-icon-button matTooltip="Undo" (click)="handleUndoDisable()" [disabled]="isUndoDisabled">
                         <mat-icon>undo</mat-icon>
                     </button>

@@ -4,7 +4,12 @@
     </div>
     <div class="displayNotes">
         <div class="notes">
+            <p class="noteHeading">Pinned</p>
             <app-displaynote [userNoteList]="userNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
+        </div>
+        <div class="notes">
+            <p class="noteHeading" *ngIf="!isotherNotesExists">Others</p>
+            <app-displaynote [userNoteList]="userotherNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
         </div>
     </div>
 </div>

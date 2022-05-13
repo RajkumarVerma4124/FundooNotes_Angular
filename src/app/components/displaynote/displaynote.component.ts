@@ -3,6 +3,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/services/noteServices/note.service';
+import { DataService } from '../../services/dataServices/data.service'
 
 @Component({
   selector: 'app-displaynote',
@@ -13,16 +14,21 @@ export class DisplaynoteComponent implements OnInit {
   isPin = false;
   updatedNoteData: any;
   snackBarRef: any;
+  searchString: any;
   isIconVisible: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   @Input() userNoteList: any;
   @Output() updateNoteEvent = new EventEmitter<any>();
 
-  constructor(public dialog: MatDialog, private notesService: NoteService, private snackBar: MatSnackBar) { 
+  constructor(public dialog: MatDialog, private notesService: NoteService, private snackBar: MatSnackBar, private dataService: DataService) { 
   }
 
   ngOnInit(): void {
+    this.dataService.recievedData.subscribe((response: any) => {
+      console.log("Data Recieved", response);
+      this.searchString = response;
+      })
   }
 
   openDialog(noteData: any) {
@@ -36,8 +42,9 @@ export class DisplaynoteComponent implements OnInit {
     }
     else{
       const dialogRef = this.dialog.open(UpdatenoteComponent, {
-        width: '500px',
-        data: noteData
+        width: '650Px',
+        maxHeight: '600Px',
+        data: noteData,
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -52,11 +59,11 @@ export class DisplaynoteComponent implements OnInit {
     this.notesService.pinNote(noteData.notesId).subscribe((response: any) => {
       console.log("Note Pin status changed", response.data);
     })
+    this.refreshUpdatedNoteData(noteData)
   }
 
   refreshUpdatedNoteData($event: any) {
     this.updatedNoteData = $event;
-    // console.log("Note Refresh Updated",this.updatedNoteData)
     this.updateNoteEvent.emit(this.updatedNoteData);
   }
 

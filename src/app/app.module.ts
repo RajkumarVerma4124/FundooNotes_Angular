@@ -37,6 +37,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
 import { ArchivednotesComponent } from './components/archivednotes/archivednotes.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { CollabnotesComponent } from './components/collabnotes/collabnotes.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { ArchivednotesComponent } from './components/archivednotes/archivednotes
     PagenotfoundComponent,
     TrashnotesComponent,
     ArchivednotesComponent,
+    FilterPipe,
+    CollabnotesComponent,
   ],
   imports: [
     BrowserModule,

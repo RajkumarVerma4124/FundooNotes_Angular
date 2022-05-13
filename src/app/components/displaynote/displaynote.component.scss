@@ -4,6 +4,12 @@
     flex-wrap: wrap;
 }
 
+// .display_note {
+//     display: grid;
+//     align-items: center;
+//     justify-content: center;
+//     width: 100%;
+// }
 .note {
     display: flex;
     flex-direction: column;
@@ -13,8 +19,19 @@
     border-radius: 7px;
     width: 250px;
     margin: 10px;
+    height: fit-content;
 }
 
+// .note {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: center;
+//     border: 1px solid rgb(211, 210, 210);
+//     border-radius: 7px;
+//     width: 100%;
+//     margin: 10px;
+// }
 .note:hover {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -86,6 +103,12 @@ button:hover {
 
 .note:hover .note_icons {
     opacity: 1;
+}
+
+.noteimage {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 @media (max-width: 691px) {
