@@ -191,7 +191,6 @@ export class IconsComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((result: any) => {
         console.log('The collab dialog was closed:',result);
-        console.log(result)
         this.changeNoteStatus.emit(result);
       });
   }

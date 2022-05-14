@@ -77,15 +77,10 @@ export class DisplaynoteComponent implements OnInit {
   refreshUpdatedNoteData(event: any) {
     console.log(event)
     console.log(event?.length >= 0);
-    if (event !== true ){
-      console.log(event)
-      this.updateNoteEvent.emit(event);
-     }
-     else if(event?.length >= 0) {
-      this.getAllCollabNotes();
-      this.updateNoteEvent.emit(event);
+    this.getAllCollabNotes();
+    this.updateNoteEvent.emit(event);
+    // this.updateNoteEvent.emit(event);
     }
-  }
 
   noteClicked(){
     this.isIconVisible = !this.isIconVisible
@@ -93,15 +88,16 @@ export class DisplaynoteComponent implements OnInit {
 
   getAllCollabNotes(){
     this.collabService.getAllCollabUser().subscribe((response: any) => {
-          console.log("Got All Collab User", response.data);
-          this.collabUsersList = response.data;
-        }, error => {
-          console.log(error);
-          this.snackBar.open(error.error.message, 'Add Some ', {
-            duration: 4000,
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-          })
-        });
+      console.log("Got All Collab User", response.data);
+      this.collabUsersList = response.data;
+    }, error => {
+      console.log(error);
+      this.collabUsersList = [];
+      this.snackBar.open(error.error.message, 'Add Some ', {
+        duration: 4000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      })
+    });
   }
 }
