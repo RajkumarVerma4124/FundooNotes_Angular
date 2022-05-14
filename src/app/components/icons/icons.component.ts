@@ -17,6 +17,7 @@ export class IconsComponent implements OnInit {
   snackBarRef: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  collabUserData: any = [];
   @Input() noteDataObj: any
   @Output() changeNoteStatus = new EventEmitter<any>();
   @Output() updateImageAndColor = new EventEmitter<any>();
@@ -63,25 +64,34 @@ export class IconsComponent implements OnInit {
 
   changeTrashStatus(noteData: any) {
     if (typeof (noteData.notesId) !== 'undefined'){ 
-      this.isTrash = !noteData.isTrash;
-      this.notesService.trashNote(this.noteDataObj.notesId).subscribe((response: any) => {
-        console.log("Note Trashed", response);
-        this.changeNoteStatus.emit(response);
-        if (response.data.isTrash === true) {
-          this.snackBarRef = this.snackBar.open('Note binned', 'Success', {
-            duration: 4000,
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-          })
-        }
-        else {
-          this.snackBarRef = this.snackBar.open('Note restored', 'Success', {
-            duration: 4000,
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-          })
-        }
-      })
+      console.log(this.collabUserData[0], this.collabUserData[0]?.collabId)
+      if (typeof (this.collabUserData[0]?.collabId) !== 'undefined' || typeof (this.collabUserData[0]) !== 'undefined') {
+        this.isTrash = !noteData.isTrash;
+        this.notesService.trashNote(this.noteDataObj.notesId).subscribe((response: any) => {
+          console.log("Note Trashed", response);
+          this.changeNoteStatus.emit(response);
+          if (response.data.isTrash === true) {
+            this.snackBarRef = this.snackBar.open('Note binned', 'Success', {
+              duration: 4000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            })
+          }
+          else {
+            this.snackBarRef = this.snackBar.open('Note restored', 'Success', {
+              duration: 4000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            })
+          }
+        })
+      } else {
+        this.snackBar.open('You Dont Have Permission To Delete This Note', 'Dont Try', {
+          duration: 4000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })
+      }
     }
     else{ 
       noteData.IsTrash = !noteData.IsTrash;
@@ -91,15 +101,16 @@ export class IconsComponent implements OnInit {
   }
 
   deleteNote() {
-    this.notesService.deleteNote(this.noteDataObj.notesId).subscribe((response: any) => {
-      console.log("Note Deleted Successfully", response);
-      this.changeNoteStatus.emit(response);
-      this.snackBarRef = this.snackBar.open('Note Deleted', 'Success', {
+      this.notesService.deleteNote(this.noteDataObj.notesId).subscribe((response: any) => {
+        console.log("Note Deleted Successfully", response);
+        this.changeNoteStatus.emit(response);
+        this.snackBarRef = this.snackBar.open('Note Deleted', 'Success', {
           duration: 4000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         })
-    })
+      })   
+    
   }
 
   changeArchiveStatus(noteData: any) {
@@ -193,8 +204,10 @@ export class IconsComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((result: any) => {
         console.log('The collab dialog was closed:', result);
+        this.collabUserData = result;
+        console.log(this.collabUserData)
         this.changeNoteStatus.emit(result);
-        this.updateCollabUser.emit(result);
+        this.updateCollabUser.emit(result.slice(1));
       });
     } 
     else {

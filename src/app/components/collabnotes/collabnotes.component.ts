@@ -23,7 +23,7 @@ export class CollabnotesComponent implements OnInit {
   ownerEmail: any = "";
   notesId: any;
   collabUsersData: any;
-  collabUsersDataList: any;
+  tempCollabUsersList: any;
   searchEmail: string = "";
   isSearchActive: boolean = false;
   snackBarRef: any;
@@ -48,9 +48,7 @@ export class CollabnotesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.ownerName = `${localStorage.getItem('FirstName')} ${localStorage.getItem('LastName')}`;
-    this.ownerEmail = localStorage.getItem('Email')
-    console.log(this.ownerName);
+
     console.log(this.notesId);
     this.getCollabUsers();
   }
@@ -94,6 +92,11 @@ export class CollabnotesComponent implements OnInit {
     this.collabService.getCollabUser(this.notesId).subscribe((response: any) => {
         console.log(response);
       this.collabUsersData = response.data;
+      this.tempCollabUsersList = response.data;
+      this.ownerName = `${this.collabUsersData[0]?.firstName} ${this.collabUsersData[0]?.lastName}`;
+      this.ownerEmail = `${this.collabUsersData[0]?.collabEmail}`;
+      this.collabUsersData = this.collabUsersData.slice(1);
+      console.log(this.ownerName);
       console.log("collaborators list:", this.collabUsersData);
     }, error => {
       console.log(error);
