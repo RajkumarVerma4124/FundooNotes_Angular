@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-import { DataService} from '../../services/dataServices/data.service'
+import { DataService } from '../../services/dataServices/data.service'
+import { NoteService } from '../../services/noteServices/note.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -29,10 +30,10 @@ export class DashboardComponent implements OnDestroy {
   lastName: any;
   userName: any;
 
-
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private dataService: DataService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, 
+    private dataService: DataService, private noteService: NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -53,11 +54,10 @@ export class DashboardComponent implements OnDestroy {
     localStorage.removeItem("token");
     localStorage.removeItem("FirstName");
     localStorage.removeItem("LastName");
+    localStorage.removeItem("Email");
     localStorage.clear();
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/login');
   }
-
-  changeFormat: boolean = false;
 
   menuClicked() {
     this.isMenuOpen = !this.isMenuOpen;

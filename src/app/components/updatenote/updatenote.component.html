@@ -32,7 +32,7 @@
     <div fxLayout="row" class="collabImage">
         <div *ngFor="let collabUser of collabUsersList">
             <div *ngIf="collabUser.noteId === data.noteData.notesId" class="collabName">
-                <ngx-avatar [style]="customStyle" size="30" name="{{collabUser.firstName}}"></ngx-avatar>
+                <ngx-avatar [style]="customStyle" size="30" name="{{collabUser.firstName}}" matTooltip="{{collabUser.firstName}} {{collabUser.lastName}}"></ngx-avatar>
             </div>
         </div>
     </div>

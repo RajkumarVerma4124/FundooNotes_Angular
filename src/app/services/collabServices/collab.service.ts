@@ -10,7 +10,7 @@ export class CollabService {
 
   constructor(private httpService: HttpService) {
     this.token = localStorage.getItem('token');
-   }
+  }
 
   addCollabUser(collabData: any) {
     console.log(collabData)

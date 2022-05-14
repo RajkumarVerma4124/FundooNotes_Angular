@@ -1,144 +1,144 @@
-    .display_note {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    // .display_note {
-    //     display: grid;
-    //     align-items: center;
-    //     justify-content: center;
-    //     width: 100%;
-    // }
+.display_note {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+// .display_note {
+//     display: grid;
+//     align-items: center;
+//     justify-content: center;
+//     width: 100%;
+// }
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(211, 210, 210);
+    border-radius: 7px;
+    width: 250px;
+    margin: 10px;
+    height: fit-content;
+}
+
+// .note {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: center;
+//     border: 1px solid rgb(211, 210, 210);
+//     border-radius: 7px;
+//     width: 100%;
+//     margin: 10px;
+// }
+.note:hover {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note_titles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.note_title {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    word-break: break-all;
+    // word-wrap: normal;
+}
+
+button {
+    opacity: 0.5;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.pushpin {
+    opacity: 0;
+}
+
+.note:hover .pushpin {
+    opacity: 1;
+}
+
+.notes_description {
+    width: 94%;
+    letter-spacing: .01428571em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px 5px 9px;
+    padding-right: 9px;
+    word-break: break-all;
+    // word-wrap: normal;
+    // flex-wrap: wrap;
+}
+
+.note_icons {
+    width: 100%;
+    opacity: 0;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.note_icons_visible {
+    width: 100%;
+    opacity: 1;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.note:hover .note_icons {
+    opacity: 1;
+}
+
+.noteimage {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.collabImage {
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.collabName {
+    margin-right: 10px
+}
+
+@media (max-width: 691px) {
     .note {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid rgb(211, 210, 210);
-        border-radius: 7px;
-        width: 250px;
         margin: 10px;
-        height: fit-content;
+        width: 83%;
+        // margin-right: 85px;
     }
-    
-    // .note {
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: space-between;
-    //     align-items: center;
-    //     border: 1px solid rgb(211, 210, 210);
-    //     border-radius: 7px;
-    //     width: 100%;
-    //     margin: 10px;
-    // }
-    .note:hover {
-        border: none;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media (max-width: 600px) {
+    .note {
+        margin: 10px;
+        width: 83%;
+        // margin-right: 55px;
     }
-    
-    .note_titles {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        font-weight: 500;
-        margin-top: 10px;
-    }
-    
-    .note_title {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        word-break: break-all;
-        // word-wrap: normal;
-    }
-    
-    button {
-        opacity: 0.5;
-    }
-    
-    button:hover {
-        opacity: 1;
-    }
-    
-    .pushpin {
-        opacity: 0;
-    }
-    
-    .note:hover .pushpin {
-        opacity: 1;
-    }
-    
-    .notes_description {
-        width: 94%;
-        letter-spacing: .01428571em;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: .875rem;
-        font-weight: 400;
-        line-height: 1.25rem;
-        display: flex;
-        flex-direction: row;
-        margin: 5px 0px 5px 9px;
-        padding-right: 9px;
-        word-break: break-all;
-        // word-wrap: normal;
-        // flex-wrap: wrap;
-    }
-    
-    .note_icons {
-        width: 100%;
-        opacity: 0;
-        margin-bottom: 5px;
-        margin-left: 10px;
-    }
-    
-    .note_icons_visible {
-        width: 100%;
-        opacity: 1;
-        margin-bottom: 5px;
-        margin-left: 10px;
-    }
-    
-    .note:hover .note_icons {
-        opacity: 1;
-    }
-    
-    .noteimage {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
-    
-    .collabImage {
-        flex-wrap: wrap;
-        width: 100%;
-        margin-left: 10px;
-    }
-    
-    .collabName {
-        margin-right: 10px
-    }
-    
-    @media (max-width: 691px) {
-        .note {
-            margin: 10px;
-            width: 83%;
-            // margin-right: 85px;
-        }
-    }
-    
-    @media (max-width: 600px) {
-        .note {
-            margin: 10px;
-            width: 83%;
-            // margin-right: 55px;
-        }
-    }
-    
-    // @media (max-width: 960px) {
-    //     .display_note {
-    //         justify-content: center;
-    //     }
-    // }
+}
+
+// @media (max-width: 960px) {
+//     .display_note {
+//         justify-content: center;
+//     }
+// }
