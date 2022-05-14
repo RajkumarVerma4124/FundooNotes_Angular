@@ -2,7 +2,7 @@
     <button mat-icon-button matTooltip="Remind me" *ngIf="!isTrash"> 
         <img src="/assets/images/add_alert_black.svg" width="20px" height="20px">
     </button>
-    <button mat-icon-button matTooltip="Collaborator" *ngIf="!isTrash"> 
+    <button mat-icon-button matTooltip="Collaborator" *ngIf="!isTrash" (click)="addCollaborator(noteDataObj)"> 
         <img src="/assets/images/add_person.svg" width="20px" height="20px">
     </button>
     <button mat-icon-button matTooltip="Background options" *ngIf="!isTrash" [matMenuTriggerFor]="changecolor"> 

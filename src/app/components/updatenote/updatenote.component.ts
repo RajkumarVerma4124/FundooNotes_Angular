@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateNoteModel } from 'src/app/models/updateNoteModel';
 import { NoteService } from 'src/app/services/noteServices/note.service';

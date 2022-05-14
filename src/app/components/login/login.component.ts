@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", response.token);
         localStorage.setItem("FirstName", response.firstName);
         localStorage.setItem("LastName", response.lastName);
+        localStorage.setItem("Email", response.email);
         this.toastr.success("Login successfully"), {
           toastClass: 'ngx-toastr success',
         };

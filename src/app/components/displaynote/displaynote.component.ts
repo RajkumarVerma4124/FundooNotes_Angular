@@ -3,6 +3,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/services/noteServices/note.service';
+import { CollabService } from 'src/app/services/collabServices/collab.service';
 import { DataService } from '../../services/dataServices/data.service'
 
 @Component({
@@ -11,17 +12,27 @@ import { DataService } from '../../services/dataServices/data.service'
   styleUrls: ['./displaynote.component.scss']
 })
 export class DisplaynoteComponent implements OnInit {
+  customStyle = {
+    backgroundColor: "transparent",
+    border: "1px solid rgba(0,0,0,.6)",
+    borderRadius: "50%",
+    color: "#202124",
+    cursor: "pointer",
+  };
+  
   isPin = false;
-  updatedNoteData: any;
   snackBarRef: any;
   searchString: any;
+  collabUsers: any;
+  collabUsersList: any;
   isIconVisible: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   @Input() userNoteList: any;
   @Output() updateNoteEvent = new EventEmitter<any>();
 
-  constructor(public dialog: MatDialog, private notesService: NoteService, private snackBar: MatSnackBar, private dataService: DataService) { 
+  constructor(public dialog: MatDialog, private notesService: NoteService, 
+    private snackBar: MatSnackBar, private dataService: DataService, private collabService: CollabService) { 
   }
 
   ngOnInit(): void {
@@ -29,6 +40,7 @@ export class DisplaynoteComponent implements OnInit {
       console.log("Data Recieved", response);
       this.searchString = response;
       })
+    this.getAllCollabNotes();
   }
 
   openDialog(noteData: any) {
@@ -62,12 +74,34 @@ export class DisplaynoteComponent implements OnInit {
     this.refreshUpdatedNoteData(noteData)
   }
 
-  refreshUpdatedNoteData($event: any) {
-    this.updatedNoteData = $event;
-    this.updateNoteEvent.emit(this.updatedNoteData);
+  refreshUpdatedNoteData(event: any) {
+    console.log(event)
+    console.log(event?.length >= 0);
+    if (event !== true ){
+      console.log(event)
+      this.updateNoteEvent.emit(event);
+     }
+     else if(event?.length >= 0) {
+      this.getAllCollabNotes();
+      this.updateNoteEvent.emit(event);
+    }
   }
 
   noteClicked(){
     this.isIconVisible = !this.isIconVisible
+  }
+
+  getAllCollabNotes(){
+    this.collabService.getAllCollabUser().subscribe((response: any) => {
+          console.log("Got All Collab User", response.data);
+          this.collabUsersList = response.data;
+        }, error => {
+          console.log(error);
+          this.snackBar.open(error.error.message, 'Add Some ', {
+            duration: 4000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          })
+        });
   }
 }

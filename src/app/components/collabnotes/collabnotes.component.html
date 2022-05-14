@@ -1,1 +1,58 @@
-<p>collabnotes works!</p>
+<div class="Collab_Container">
+    <div fxLayout="row" fxLayoutAlign="start center" class="collab_header">
+        <span style="font-size:large; font-family: inherit">Collaborators</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="collabUserList">
+        <div style="height:64px" fxLayout="row" fxLayoutAlign="start center" class="owner_container">
+            <div class="collabImage">
+                <ngx-avatar [style]="customStyle" size="40" name="{{ownerName}}"></ngx-avatar>
+            </div>
+            <div class="collab_details">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <div style="margin-bottom: -4px;"><span class="ownerName">{{ownerName}}</span><span class="owner">(owner)</span></div>
+                    <div class="ownerEmail">{{ownerEmail}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height:64px" fxLayout="row" fxLayoutAlign="start center" class="owner_container" *ngFor="let collabUser of collabUsersData">
+            <div class="collabImage">
+                <ngx-avatar [style]="customStyle" size="40" name="{{collabUser.firstName}}"></ngx-avatar>
+            </div>
+            <div class="collab_User_details">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <div class="ownerEmail">{{collabUser.collabEmail}}</div>
+                </div>
+                <div>
+                    <button mat-icon-button class="addCollab" style="margin-top: 2px;">
+                        <mat-icon matTooltip="Delete" class="remove_active" (click)="removeCollabUsers(collabUser.collabId)">clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input_container">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="person_add_icon">
+                    <button mat-icon-button class="person_add">
+                    <mat-icon>person_add</mat-icon>
+                </button>
+                </div>
+                <div>
+                    <input class="input" matInput placeholder="Person or email to share with" #email required (keyup)="recieveEmailId($event)" [(ngModel)]="searchEmail">
+                </div>
+            </div>
+            <div>
+                <button mat-icon-button class="addCollab" (click)="[addCollabEmail(searchEmail), diableAddCollab()]">
+                    <mat-icon matTooltip="Add collaborator" [ngClass]="isSearchActive == true ? 'add_check_active' : 'add_check'">done</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="button_container" fxLayout="row" fxLayoutAlign="end center">
+        <button mat-button class="buttons_collab" mat-dialog-close>Cancel</button>
+        <button mat-button class="buttons_collab" mat-dialog-close (click)="collabData(collabUsersData)">Save</button>
+    </div>
+</div>

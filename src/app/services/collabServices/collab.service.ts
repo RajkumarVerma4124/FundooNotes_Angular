@@ -44,4 +44,14 @@ export class CollabService {
     }
     return this.httpService.getService("/Collab/Get?noteId="+noteId, true, header);
   }
+
+  getAllCollabUser() {
+    let header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+    return this.httpService.getService("/Collab/GetAll", true, header);
+  }
 }

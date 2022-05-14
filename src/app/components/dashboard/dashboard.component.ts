@@ -15,7 +15,6 @@ export class DashboardComponent implements OnDestroy {
     borderRadius: "50%",
     color: "#7e7e7e",
     cursor: "pointer",
- 
   };
 
   mobileQuery: MediaQueryList;

@@ -21,6 +21,9 @@ export class TakenoteComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
+  fileData!: any;
+  previewUrl!: any;
+
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,) { }
 
   noteType(): NoteModel {
@@ -46,7 +49,7 @@ export class TakenoteComponent implements OnInit {
     return this.isExpand === true ? (this.isExpand = false) : (this.isExpand = true);
   }
 
-  checkTitle(stringData: any) { 
+  checkTitle(stringData: any) {
     this.noteInput.Title = stringData.target.value;
     this.tempTitleStr = stringData.target.value;
     this.isUndoDisabled = false;
@@ -71,7 +74,7 @@ export class TakenoteComponent implements OnInit {
   addNote() {
     this.isExpand = false;
     console.log(this.noteInput)
-    if (this.noteInput.Title != '' || this.noteInput.Description != '') {
+    if (this.noteInput.Title != '' || this.noteInput.Description != '' || this.noteInput.ImagePaths != '') {
       let formData: FormData = new FormData();
       formData.append('Title', this.noteInput.Title);
       formData.append('Description', this.noteInput.Description);
@@ -98,16 +101,8 @@ export class TakenoteComponent implements OnInit {
         })
       });
     }
-    this.noteInput.Title = "";
-    this.noteInput.Description = "";
-    this.noteInput.Color = "";
-    this.noteInput.Reminder = "";
-    this.noteInput.ImagePaths = "";
-    this.noteInput.IsArchive = false;
-    this.noteInput.IsPinned = false;
-    this.noteInput.IsTrash = false;
-    this.tempTitleStr = "";
-    this.tempDescStr = "";
+    this.noteInput = this.noteType();
+    this.previewUrl = "";
   }
 
   handlePin() {
@@ -140,31 +135,43 @@ export class TakenoteComponent implements OnInit {
     this.isRedoDisabled = true;
     this.isUndoDisabled = false;
     console.log(this.onTitle, this.onDesc)
-    if(this.onTitle === true)
-    {
+    if (this.onTitle === true) {
       this.noteInput.Title = this.tempTitleStr;
 
     }
-    else if(this.onDesc === true){
+    else if (this.onDesc === true) {
       this.noteInput.Description = this.tempDescStr;
     }
   }
 
-  refreshTakeNote(noteData: any){
-    console.log(noteData)
-    if (noteData.IsArchive && noteData.IsTrash) {
-      this.noteInput.IsArchive = noteData.IsArchive;
-      this.noteInput.IsTrash = noteData.IsTrash;
-      console.log(this.noteInput.IsTrash, this.noteInput.IsArchive)
+  refreshTakeNote(noteData: any) {
+
+    this.noteInput.IsArchive = noteData.IsArchive;
+    this.noteInput.IsTrash = noteData.IsTrash;
+    this.noteInput.Color = noteData.Color != null ? noteData.Color : "";
+    this.noteInput.ImagePaths = noteData.ImagePaths
+    if (noteData.ImagePaths !== null) {
+      this.preview(noteData.ImagePaths);
+      noteData.ImagePaths == "";
     }
-    else if (noteData.Color !== null ){
-      this.noteInput.Color = noteData.Color != null ? noteData.Color : "";
-      console.log(this.noteInput.Color)
+  }
+
+  preview(fileData: any) {
+    // Show preview 
+    var mimeType = fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
     }
-    else{ 
-      this.noteInput.ImagePaths = noteData.ImagePaths
-      console.log(this.noteInput.ImagePaths)
+    var reader = new FileReader();
+    reader.readAsDataURL(fileData);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
     }
+  }
+
+  removeImage(){
+    this.previewUrl = "";
+    this.noteInput.ImagePaths=""
   }
 }
 

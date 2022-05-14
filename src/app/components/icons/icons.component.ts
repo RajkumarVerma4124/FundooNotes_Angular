@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/services/noteServices/note.service';
+import { CollabService } from 'src/app/services/collabServices/collab.service';
 import { NoteColorModel } from 'src/app/models/noteColorModel';
 import { MatDialog } from '@angular/material/dialog';
-
+import { CollabnotesComponent } from '../collabnotes/collabnotes.component';
 
 @Component({
   selector: 'app-icons',
@@ -45,7 +46,8 @@ export class IconsComponent implements OnInit {
 
   @Input() noteColorInput: NoteColorModel = this.noteType();
 
-  constructor(private notesService: NoteService, private snackBar: MatSnackBar) {
+  constructor(private notesService: NoteService, private snackBar: MatSnackBar, 
+    private collabService: CollabService, public dialog: MatDialog) {
    }
 
   ngOnInit() {
@@ -78,9 +80,6 @@ export class IconsComponent implements OnInit {
             verticalPosition: this.verticalPosition,
           })
         }
-        // this.snackBarRef.onAction().subscribe(() => {
-        //   this.changeTrashStatus(noteData)
-        // })
       })
     }
     else{ 
@@ -182,5 +181,18 @@ export class IconsComponent implements OnInit {
         this.updateImageAndColor.emit(response);
       })
     }
+  }
+
+  addCollaborator(noteData: any) {
+      const dialogRef = this.dialog.open(CollabnotesComponent, {
+        width: '600Px',
+        maxHeight: '650Px',
+        data: noteData,
+      });
+      dialogRef.afterClosed().subscribe((result: any) => {
+        console.log('The collab dialog was closed:',result);
+        console.log(result)
+        this.changeNoteStatus.emit(result);
+      });
   }
 }

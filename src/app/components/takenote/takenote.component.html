@@ -21,6 +21,14 @@
     </div>
     <div *ngIf="isExpand">
         <mat-card fxLayout="column" class="takenotetwo" [style.background]="noteInput.Color">
+
+            <div class="image-preview mb-3" *ngIf="previewUrl">
+                <img [src]="previewUrl" width="100%" style="max-height: 220px;margin-top: 9px;" />
+                <div class="removeImg" (click)="removeImage()">
+                    <mat-icon>cancel</mat-icon>
+                </div>
+            </div>
+
             <div class="notetwo_top">
                 <div class='title'>
                     <textarea class="note_title" placeholder="Title" (keyup)="checkTitle($event)" [(ngModel)]="noteInput.Title" (click)="onTitleClick()" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>

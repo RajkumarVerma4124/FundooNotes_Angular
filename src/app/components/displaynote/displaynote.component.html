@@ -22,6 +22,13 @@
             </div>
         </div>
         <div class='notes_description' fxLayout="row" (click)="openDialog(noteData)">{{noteData.description}}</div>
+        <div fxLayout="row" class="collabImage">
+            <div *ngFor="let collabUser of collabUsersList">
+                <div *ngIf="collabUser.noteId === noteData.notesId" class="collabName">
+                    <ngx-avatar [style]="customStyle" size="30" name="{{collabUser.firstName}}"></ngx-avatar>
+                </div>
+            </div>
+        </div>
         <div [ngClass]="isIconVisible == true ? 'note_icons_visible' : 'note_icons'" fxLayout="row">
             <app-icons class="note_icon" [noteDataObj]="noteData" (changeNoteStatus)="refreshUpdatedNoteData($event)"></app-icons>
         </div>

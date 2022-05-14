@@ -174,6 +174,13 @@ button:hover {
     margin-right: 35px !important;
 }
 
+.removeImg {
+    text-align: right;
+    margin: -34px 5px 10px 0;
+    font-size: 25px;
+    color: white;
+}
+
 ::ng-deep .ngx-toastr {
     width: 70% !important; // Specify toastr-dialog width for all devices
     border-radius: 10px !important;
