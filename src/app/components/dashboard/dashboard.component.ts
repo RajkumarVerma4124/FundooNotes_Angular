@@ -57,6 +57,7 @@ export class DashboardComponent implements OnDestroy {
     localStorage.removeItem("Email");
     localStorage.clear();
     this.router.navigateByUrl('/login');
+    window.location.reload();
   }
 
   menuClicked() {
