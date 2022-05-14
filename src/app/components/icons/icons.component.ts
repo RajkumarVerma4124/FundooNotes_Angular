@@ -20,6 +20,7 @@ export class IconsComponent implements OnInit {
   @Input() noteDataObj: any
   @Output() changeNoteStatus = new EventEmitter<any>();
   @Output() updateImageAndColor = new EventEmitter<any>();
+  @Output() updateCollabUser = new EventEmitter<any>();
   colorsPaletteArr = [
                         { color: "white", name: "Default" }, 
                         { color: "#f28b82", name: "Red" }, 
@@ -184,14 +185,24 @@ export class IconsComponent implements OnInit {
   }
 
   addCollaborator(noteData: any) {
+    if (typeof (this.noteDataObj.notesId) !== 'undefined') {
       const dialogRef = this.dialog.open(CollabnotesComponent, {
         width: '600Px',
         maxHeight: '650Px',
         data: noteData,
       });
       dialogRef.afterClosed().subscribe((result: any) => {
-        console.log('The collab dialog was closed:',result);
+        console.log('The collab dialog was closed:', result);
         this.changeNoteStatus.emit(result);
+        this.updateCollabUser.emit(result);
       });
+    } 
+    else {
+      this.snackBar.open('Create A Note First', 'Failed', {
+        duration: 4000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      })
+    }    
   }
 }

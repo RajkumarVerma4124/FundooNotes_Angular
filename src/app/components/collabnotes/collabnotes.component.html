@@ -22,6 +22,7 @@
             </div>
             <div class="collab_User_details">
                 <div fxLayout="column" fxLayoutAlign="start start">
+                    <div style="margin-bottom: -4px;"><span class="ownerName">{{collabUser.firstName}} {{collabUser.lastName}}</span></div>
                     <div class="ownerEmail">{{collabUser.collabEmail}}</div>
                 </div>
                 <div>
@@ -52,7 +53,7 @@
     </div>
 
     <div class="button_container" fxLayout="row" fxLayoutAlign="end center">
-        <button mat-button class="buttons_collab" mat-dialog-close>Cancel</button>
+        <button mat-button class="buttons_collab" mat-dialog-close (click)="collabData(collabUsersData)">Cancel</button>
         <button mat-button class="buttons_collab" mat-dialog-close (click)="collabData(collabUsersData)">Save</button>
     </div>
 </div>

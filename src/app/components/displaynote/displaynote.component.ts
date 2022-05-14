@@ -56,7 +56,7 @@ export class DisplaynoteComponent implements OnInit {
       const dialogRef = this.dialog.open(UpdatenoteComponent, {
         width: '650Px',
         maxHeight: '600Px',
-        data: noteData,
+        data: { noteData: noteData, collabUser: this.collabUsersList }
       });
 
       dialogRef.afterClosed().subscribe(result => {

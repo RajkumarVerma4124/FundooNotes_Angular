@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit, Input } from '@angular/core';
+import { Component, Inject, OnInit, Input, SimpleChanges } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateNoteModel } from 'src/app/models/updateNoteModel';
 import { NoteService } from 'src/app/services/noteServices/note.service';
+import { CollabService } from 'src/app/services/collabServices/collab.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-updatenote',
@@ -19,6 +21,17 @@ export class UpdatenoteComponent implements OnInit {
   imageUrl: any = [];
   color: string = ''
   iscolorchange: boolean = false
+  collabUsersList: any;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  customStyle = {
+    backgroundColor: "transparent",
+    border: "1px solid rgba(0,0,0,.6)",
+    borderRadius: "50%",
+    color: "#202124",
+    cursor: "pointer",
+  };
   
   noteType(): UpdateNoteModel {
     return this.note = {
@@ -31,20 +44,24 @@ export class UpdatenoteComponent implements OnInit {
   @Input() noteInput: UpdateNoteModel = this.noteType();
 
   constructor(public dialogRef: MatDialogRef<UpdatenoteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private noteService: NoteService,) { 
-    this.noteInput.Title = data.title;
-    this.noteInput.Description = data.description;
+    @Inject(MAT_DIALOG_DATA) public data: any, private noteService: NoteService, 
+    private collabService: CollabService, private snackBar: MatSnackBar) { 
+    this.noteInput.Title = data.noteData.title;
+    this.noteInput.Description = data.noteData.description;
     this.tempTitleStr = this.noteInput.Title; 
     this.tempDescStr = this.noteInput.Description;
-    this.noteId = data.notesId
+    this.noteId = data.noteData.notesId
+    this.collabUsersList = data.collabUser
+    console.log(data.noteData, data.collabUser)
   }
 
   ngOnInit(): void {
-    
     // console.log(this.valueChanged)
     // console.log(this.tempTitleStr, this.tempDescStr)
     // console.log(this.noteInput.Title, this.noteInput.Description)
+    this.collabUsersList = this.data.collabUser
   }
+
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -86,5 +103,9 @@ export class UpdatenoteComponent implements OnInit {
     else {
       this.data.color = newNoteData.color
     }
+  }
+
+  refreshCollabUser(collabData: any){
+    this.collabUsersList = collabData
   }
 }
