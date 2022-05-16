@@ -1,6 +1,6 @@
-<div class="takeNoteContainer">
+<div [ngClass]="isGridLayout == true ? 'takeNoteContainer takeNoteContainer_grid' : 'takeNoteContainer'" class="takeNoteContainer">
     <div *ngIf="!isExpand" (click)="noteStatus()">
-        <mat-card class="takenoteone" fxlayout="column">
+        <mat-card [ngClass]="isGridLayout == true ? 'takenoteone takenoteone_grid' : 'takenoteone'" fxlayout="column">
             <div class="noteone_left">
                 <div class="content">
                     Take a note...
@@ -20,7 +20,7 @@
         </mat-card>
     </div>
     <div *ngIf="isExpand">
-        <mat-card fxLayout="column" class="takenotetwo" [style.background]="noteInput.Color">
+        <mat-card fxLayout="column" [ngClass]="isGridLayout == true ? 'takenotetwo takenotetwo_grid' : 'takenotetwo'" [style.background]="noteInput.Color">
 
             <div class="image-preview mb-3" *ngIf="previewUrl">
                 <img [src]="previewUrl" width="100%" style="max-height: 220px;margin-top: 9px;" />
@@ -51,17 +51,21 @@
                 </div>
             </div>
 
-            <div class="notetwo_bottom" fxLayout="row">
-                <app-icons [noteDataObj]="noteModel" (changeNoteStatus)="refreshTakeNote($event)"></app-icons>
-                <div class="undo_icon" fxLayout="row">
-                    <button mat-icon-button matTooltip="Undo" (click)="handleUndoDisable()" [disabled]="isUndoDisabled">
-                        <mat-icon>undo</mat-icon>
-                    </button>
-                    <button mat-icon-button matTooltip="Redo" (click)="handleRedoDisable()" [disabled]="isRedoDisabled">
-                        <mat-icon>redo</mat-icon>
-                    </button>
+            <div class="notetwo_bottom" fxLayout="row" fxLayoutAlign="space-between">
+                <div>
+                    <app-icons [noteDataObj]="noteModel" (changeNoteStatus)="refreshTakeNote($event)"></app-icons>
                 </div>
-                <button class="closebutton" mat-flat-button (click)="isExpand=!isExpand" (click)="addNote()">Close</button>
+                <div class="undo_icon">
+                    <button mat-icon-button matTooltip="Undo" (click)="handleUndoDisable()" [disabled]="isUndoDisabled">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                    <button mat-icon-button matTooltip="Redo" (click)="handleRedoDisable()" [disabled]="isRedoDisabled">
+                            <mat-icon>redo</mat-icon>
+                        </button>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <button class="closebutton" mat-flat-button (click)="isExpand=!isExpand" (click)="addNote()">Close</button>
+                </div>
             </div>
         </mat-card>
     </div>

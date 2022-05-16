@@ -4,10 +4,11 @@ import { CollabService } from 'src/app/services/collabServices/collab.service';
 import { CollabUserModel } from 'src/app/models/collabModel';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-collabnotes',
   templateUrl: './collabnotes.component.html',
-  styleUrls: ['./collabnotes.component.scss']
+  styleUrls: ['./collabnotes.component.scss'],
 })
 export class CollabnotesComponent implements OnInit {
   customStyle = {

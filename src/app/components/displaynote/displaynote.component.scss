@@ -4,12 +4,13 @@
     flex-wrap: wrap;
 }
 
-// .display_note {
-//     display: grid;
-//     align-items: center;
-//     justify-content: center;
-//     width: 100%;
-// }
+.display_note_grid {
+    display: grid;
+    justify-content: center;
+    //  margin-left: 150px;
+    width: 90%;
+}
+
 .note {
     display: flex;
     flex-direction: column;
@@ -22,19 +23,39 @@
     height: fit-content;
 }
 
-// .note {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     align-items: center;
-//     border: 1px solid rgb(211, 210, 210);
-//     border-radius: 7px;
-//     width: 100%;
-//     margin: 10px;
-// }
+.note_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d3d2d2;
+    border-radius: 7px;
+    max-width: 600px;
+    min-width: 250px;
+    min-height: 100px;
+    max-height: 500px;
+    margin: 15px;
+}
+
 .note:hover {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note_grid:hover {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note_main_titles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    font-weight: 500;
+    margin-top: 10px;
+    justify-content: flex-start;
 }
 
 .note_titles {
@@ -45,6 +66,7 @@
     width: 90%;
     font-weight: 500;
     margin-top: 10px;
+    justify-content: flex-start;
 }
 
 .note_title {
@@ -52,6 +74,16 @@
     flex-wrap: wrap;
     flex-direction: row;
     word-break: break-all;
+    width: 100%;
+}
+
+.note_title_grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    word-break: break-all;
+    font-size: 16px;
+    width: 100%;
     // word-wrap: normal;
 }
 
@@ -60,15 +92,19 @@ button {
 }
 
 button:hover {
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .pushpin {
     opacity: 0;
 }
 
+.note_grid:hover .pushpin {
+    opacity: 0.7;
+}
+
 .note:hover .pushpin {
-    opacity: 1;
+    opacity: 0.7;
 }
 
 .notes_description {
@@ -80,25 +116,46 @@ button:hover {
     line-height: 1.25rem;
     display: flex;
     flex-direction: row;
-    margin: 5px 0px 5px 9px;
+    margin: 5px 0px 5px 0px;
     padding-right: 9px;
     word-break: break-all;
     // word-wrap: normal;
     // flex-wrap: wrap;
 }
 
+.notes_description_grid {
+    width: 94%;
+    letter-spacing: .01428571em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px 5px 9px;
+    padding-right: 9px;
+    word-break: break-all;
+    font-size: medium;
+    margin-top: 12px;
+    margin-left: 0px;
+}
+
 .note_icons {
     width: 100%;
     opacity: 0;
     margin-bottom: 5px;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .note_icons_visible {
     width: 100%;
     opacity: 1;
     margin-bottom: 5px;
-    margin-left: 10px;
+    margin-left: 0px;
+}
+
+.note_grid:hover .note_icons {
+    opacity: 1;
 }
 
 .note:hover .note_icons {
@@ -111,10 +168,24 @@ button:hover {
     width: 100%;
 }
 
+.noteimage_grid {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 50%;
+    min-height: 0%;
+}
+
 .collabImage {
     flex-wrap: wrap;
     width: 100%;
-    margin-left: 10px;
+    margin-left: 0px;
+}
+
+.collabImage_grid {
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 8px;
 }
 
 .collabName {

@@ -4,11 +4,11 @@
     </div>
     <div class="displayNotes">
         <div class="notes">
-            <p class="noteHeading">Pinned</p>
+            <p [ngClass]="isGridLayout == true ? 'noteHeading_grid' : 'noteHeading'">Pinned</p>
             <app-displaynote [userNoteList]="userNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
         </div>
         <div class="notes">
-            <p class="noteHeading" *ngIf="!isotherNotesExists">Others</p>
+            <p [ngClass]="isGridLayout == true ? 'noteHeading_grid' : 'noteHeading'" *ngIf="!isotherNotesExists">Others</p>
             <app-displaynote [userNoteList]="userotherNoteList" (updateNoteEvent)="recievedUpdatedData($event)"></app-displaynote>
         </div>
     </div>

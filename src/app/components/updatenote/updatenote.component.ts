@@ -4,11 +4,14 @@ import { UpdateNoteModel } from 'src/app/models/updateNoteModel';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 import { CollabService } from 'src/app/services/collabServices/collab.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+// import { ViewEncapsulation } from '@angular/core';
+
 
 @Component({
   selector: 'app-updatenote',
   templateUrl: './updatenote.component.html',
-  styleUrls: ['./updatenote.component.scss']
+  styleUrls: ['./updatenote.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 
 export class UpdatenoteComponent implements OnInit {

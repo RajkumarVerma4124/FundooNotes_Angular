@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteService } from 'src/app/services/noteServices/note.service';
 import { NoteModel } from 'src/app/models/notesModel';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { DataService } from '../../services/dataServices/data.service'
 
 @Component({
   selector: 'app-takenote',
@@ -18,13 +19,19 @@ export class TakenoteComponent implements OnInit {
   tempTitleStr: string = '';
   tempDescStr: string = '';
   noteModel!: NoteModel;
+  isGridLayout: boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   fileData!: any;
   previewUrl!: any;
 
-  constructor(private noteService: NoteService, private snackBar: MatSnackBar,) { }
+  constructor(private noteService: NoteService, private snackBar: MatSnackBar, private dataService: DataService,) { 
+    this.dataService.recievedNoteDisplay.subscribe((response: any) => {
+      console.log("Data Recieved", response);
+      this.isGridLayout = response;
+    })
+  }
 
   noteType(): NoteModel {
     return this.noteModel = {

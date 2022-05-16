@@ -1,4 +1,4 @@
-<div class="notes_icons">
+<div [ngClass]="isGridLayout == true ? 'notes_icons_grid' : 'notes_icons'">
     <button mat-icon-button matTooltip="Remind me" *ngIf="!isTrash"> 
         <img src="/assets/images/add_alert_black.svg" width="20px" height="20px">
     </button>

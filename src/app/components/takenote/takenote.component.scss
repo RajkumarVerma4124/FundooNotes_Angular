@@ -5,6 +5,12 @@
     padding: 10px;
 }
 
+.takeNoteContainer_grid {
+    width: 100%;
+    margin: 30px 0 60px -90px;
+    padding: 10px;
+}
+
 .takenoteone {
     border: 1px solid transparent;
     display: flex;
@@ -17,6 +23,11 @@
     padding: 5px 16px 6px 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-left: 30%;
+}
+
+.takenoteone_grid {
+    width: 55%;
+    margin-left: 22%;
 }
 
 .noteone_left {
@@ -73,6 +84,11 @@ button:hover {
     padding: 5px 16px 6px 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-left: 30%;
+}
+
+.takenotetwo_grid {
+    width: 57.5%;
+    margin-left: 22%;
 }
 
 .notetwo_top {
@@ -199,9 +215,17 @@ button:hover {
         width: 70%;
         margin-left: 20%;
     }
+    .takenoteone_grid {
+        width: 80%;
+        margin-left: 12%;
+    }
     .takenotetwo {
         width: 74.1%;
         margin-left: 20%;
+    }
+    .takenotetwo_grid {
+        width: 83.5%;
+        margin-left: 12%;
     }
     .undo_icon {
         margin-left: -10px;
@@ -210,12 +234,20 @@ button:hover {
 
 @media (max-width: 849px) {
     .takenoteone {
-        width: 90%;
+        width: 70%;
         margin-left: 8%;
+    }
+    .takenoteone_grid {
+        width: 90%;
+        margin-left: 10%;
     }
     .takenotetwo {
         width: 94.1%;
         margin-left: 8%;
+    }
+    .takenotetwo_grid {
+        width: 94.9%;
+        margin-left: 10%;
     }
     .undo_icon {
         margin-left: -10px;
@@ -227,9 +259,17 @@ button:hover {
         width: 105%;
         margin-left: -20px;
     }
+    .takenoteone_grid {
+        width: 90%;
+        margin-left: 13%;
+    }
     .takenotetwo {
         width: 113.1%;
         margin-left: -20px;
+    }
+    .takenotetwo_grid {
+        width: 96%;
+        margin-left: 13%;
     }
     .undo_icon {
         padding-left: 15px !important;
@@ -247,8 +287,16 @@ button:hover {
     .takenoteone {
         width: 110%;
     }
+    .takenoteone_grid {
+        width: 90%;
+        margin-left: 13%;
+    }
     .takenotetwo {
         width: 118.1%;
+    }
+    .takenotetwo_grid {
+        width: 96%;
+        margin-left: 13%;
     }
     .notetwo_bottom {
         margin-left: -10px;
@@ -256,6 +304,20 @@ button:hover {
 }
 
 @media (max-width: 400px) {
+    .takenoteone {
+        width: 110%;
+    }
+    .takenoteone_grid {
+        width: 90%;
+        margin-left: 20%;
+    }
+    .takenotetwo {
+        width: 118.1%;
+    }
+    .takenotetwo_grid {
+        width: 102.3%;
+        margin-left: 20%;
+    }
     .content {
         letter-spacing: 0.00625em;
         font-size: 0.9em;

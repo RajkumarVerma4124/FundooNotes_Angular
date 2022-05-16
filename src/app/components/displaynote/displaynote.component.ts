@@ -26,6 +26,7 @@ export class DisplaynoteComponent implements OnInit {
   collabUsers: any;
   collabUsersList: any;
   isIconVisible: boolean = false;
+  isGridLayout: boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   @Input() userNoteList: any;
@@ -40,7 +41,11 @@ export class DisplaynoteComponent implements OnInit {
       console.log("Data Recieved", response);
       this.searchString = response;
       })
-    this.getAllCollabNotes();
+    this.dataService.recievedNoteDisplay.subscribe((response: any) => {
+      console.log("Data Recieved", response);
+      this.isGridLayout = response;
+    })
+    // this.getAllCollabNotes();
   }
 
   openDialog(noteData: any) {
@@ -90,14 +95,15 @@ export class DisplaynoteComponent implements OnInit {
     this.collabService.getAllCollabUser().subscribe((response: any) => {
       console.log("Got All Collab User", response.data);
       this.collabUsersList = response.data;
+      console.log(this.collabUsersList)
     }, error => {
       console.log(error);
       this.collabUsersList = [];
-      this.snackBar.open(error.error.message, 'Add Some ', {
-        duration: 4000,
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-      })
+      // this.snackBar.open(error.error.message, 'Add Some ', {
+      //   duration: 4000,
+      //   horizontalPosition: this.horizontalPosition,
+      //   verticalPosition: this.verticalPosition,
+      // })
     });
   }
 }

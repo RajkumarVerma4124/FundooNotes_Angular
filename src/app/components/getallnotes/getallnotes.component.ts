@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NoteService } from 'src/app/services/noteServices/note.service';
-import { NoteModel } from 'src/app/models/notesModel';
+import { DataService } from '../../services/dataServices/data.service'
+
 
 @Component({
   selector: 'app-getallnotes',
@@ -11,9 +12,14 @@ export class GetallnotesComponent implements OnInit {
   isPin = false;
   userNoteList: any;
   userotherNoteList: any;
+  isGridLayout: boolean = true;
   isOtherNoteExist: boolean = false;
   isotherNotesExists: boolean = false;
-  constructor(private noteService: NoteService) {
+  constructor(private noteService: NoteService, private dataService: DataService,) {
+    this.dataService.recievedNoteDisplay.subscribe((response: any) => {
+      console.log("Data Recieved", response);
+      this.isGridLayout = response;
+    })
   }
 
   ngOnInit(): void {

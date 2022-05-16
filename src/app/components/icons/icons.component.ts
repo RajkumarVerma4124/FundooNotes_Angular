@@ -5,6 +5,7 @@ import { CollabService } from 'src/app/services/collabServices/collab.service';
 import { NoteColorModel } from 'src/app/models/noteColorModel';
 import { MatDialog } from '@angular/material/dialog';
 import { CollabnotesComponent } from '../collabnotes/collabnotes.component';
+import { DataService } from '../../services/dataServices/data.service'
 
 @Component({
   selector: 'app-icons',
@@ -18,6 +19,7 @@ export class IconsComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   collabUserData: any = [];
+  isGridLayout: boolean = true;
   @Input() noteDataObj: any
   @Output() changeNoteStatus = new EventEmitter<any>();
   @Output() updateImageAndColor = new EventEmitter<any>();
@@ -49,12 +51,16 @@ export class IconsComponent implements OnInit {
   @Input() noteColorInput: NoteColorModel = this.noteType();
 
   constructor(private notesService: NoteService, private snackBar: MatSnackBar, 
-    private collabService: CollabService, public dialog: MatDialog) {
+    private collabService: CollabService, public dialog: MatDialog, private dataService: DataService) {
    }
 
   ngOnInit() {
     // this.isArchive = this.noteDataObj.isArchive;
     // this.isTrash = this.noteDataObj.isTrash;
+    this.dataService.recievedNoteDisplay.subscribe((response: any) => {
+      console.log("Data Recieved", response);
+      this.isGridLayout = response;
+    })
   }
 
   ngOnChanges() {
@@ -65,9 +71,9 @@ export class IconsComponent implements OnInit {
   changeTrashStatus(noteData: any) {
     if (typeof (noteData.notesId) !== 'undefined'){ 
       console.log(this.collabUserData[0], this.collabUserData[0]?.collabId)
-      if (typeof (this.collabUserData[0]?.collabId) !== 'undefined' || typeof (this.collabUserData[0]) !== 'undefined') {
-        this.isTrash = !noteData.isTrash;
+      if (typeof (this.collabUserData[0]?.collabId) === 'undefined' || typeof (this.collabUserData[0]) === 'undefined') {
         this.notesService.trashNote(this.noteDataObj.notesId).subscribe((response: any) => {
+          this.isTrash = !noteData.isTrash;
           console.log("Note Trashed", response);
           this.changeNoteStatus.emit(response);
           if (response.data.isTrash === true) {
@@ -84,6 +90,13 @@ export class IconsComponent implements OnInit {
               verticalPosition: this.verticalPosition,
             })
           }
+        }, error => {
+          console.log(error);
+          this.snackBar.open(error.error.message, 'Dont Try', {
+            duration: 4000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          })
         })
       } else {
         this.snackBar.open('You Dont Have Permission To Delete This Note', 'Dont Try', {
@@ -133,7 +146,7 @@ export class IconsComponent implements OnInit {
             verticalPosition: this.verticalPosition,
           })
         }
-      })
+      });
     }
     else{
       this.isArchive = !this.isArchive;

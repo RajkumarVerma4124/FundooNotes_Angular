@@ -16,6 +16,7 @@ export class DashboardComponent implements OnDestroy {
     borderRadius: "50%",
     color: "#7e7e7e",
     cursor: "pointer",
+    marginBottom: "10px"
   };
 
   mobileQuery: MediaQueryList;
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnDestroy {
   firstName: any;
   lastName: any;
   userName: any;
+  email: any;
 
   private _mobileQueryListener: () => void;
 
@@ -42,6 +44,7 @@ export class DashboardComponent implements OnDestroy {
   ngOnInit() {
     this.firstName = localStorage.getItem('FirstName');
     this.lastName = localStorage.getItem('LastName');
+    this.email = localStorage.getItem('Email');
     this.userName =  this.firstName +" "+this.lastName;
     console.log(this.userName);
   }
@@ -110,6 +113,7 @@ export class DashboardComponent implements OnDestroy {
 
   viewChange(){
     this.isViewChange = !this.isViewChange;
+    this.dataService.SendDisplayData(this.isViewChange);
   }
 
   onReload(){
