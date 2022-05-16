@@ -24,7 +24,7 @@ export class DashboardComponent implements OnDestroy {
   searchTerm: string = "";
   searchBarActive: boolean = false;
   isMenuOpen: boolean = false;
-  isViewChange: boolean = true;
+  isViewChange: boolean = false;
   isBackIconClicked: boolean = false;
   isSearchIconClicked: boolean = false;
   firstName: any;

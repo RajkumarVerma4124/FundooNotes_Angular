@@ -34,6 +34,17 @@ export class NoteService {
     return this.httpService.getService('/Notes/GetUsers', true, header);
   }
 
+  getlabelsNotes(labelId: any) {
+    console.log(labelId)
+    let header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+    return this.httpService.getService('/Notes/GetLabels='+labelId, true, header);
+  }
+
   getNote(noteId: any) {
     console.log(noteId)
     let header = {
