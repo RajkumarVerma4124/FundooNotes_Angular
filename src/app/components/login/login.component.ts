@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
   showPass = true;
+  tokenExist: any = ""
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
@@ -21,6 +22,10 @@ export class LoginComponent implements OnInit {
       emailId: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]{3,}([._+-][0-9a-zA-Z]{2,})*@[0-9a-zA-Z]+[.]?([a-zA-Z]{2})+[.]([a-zA-Z]{3})+$')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).{8,}$')]],
     });
+  this.tokenExist = localStorage.getItem("token");
+    if(this.tokenExist?.length > 0) {
+      this.router.navigateByUrl('/dashboard/notes')
+    }
   }
 
   @Output() addUserInfo = new EventEmitter<any>();

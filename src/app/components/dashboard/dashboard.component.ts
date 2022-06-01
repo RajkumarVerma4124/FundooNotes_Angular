@@ -75,6 +75,7 @@ export class DashboardComponent implements OnDestroy {
     if(this.searchTerm.length == 0)
     {
       this.clickCross();
+      this.dataService.SendData(this.searchTerm);
     }
   }
 

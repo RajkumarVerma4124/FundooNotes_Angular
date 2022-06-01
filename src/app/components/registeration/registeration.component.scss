@@ -262,16 +262,7 @@
     margin-bottom: 10px;
 }
 
- ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-    color: #f44336 !important;
-    opacity: 0.8 !important;
-}
-
- ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    color: #f44336 !important;
-}
-
-.mat-error {
+ ::ng-deep .mat-error {
     color: #f44336;
     font-size: 12px;
 }
